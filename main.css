@@ -35,6 +35,10 @@ header a {
     text-decoration: none;
 }
 
+.menu-links a#active {
+    font-weight: bold;
+}
+
 .menu-links a:hover {
     color: black;
     border-bottom: 1px solid black;
@@ -45,7 +49,7 @@ header a+a {
     margin-left: 2.9rem;
 }
 
-main .box {
+.box {
     background-color: #FBDFDB;
     width: 100%;
     border-radius: 3rem;
@@ -123,4 +127,30 @@ footer p {
     text-align: center;
     color: #999999;
     padding: 2.3rem 0;
+}
+
+/* ----------------- ABOUT ----------------- */
+
+main {
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+main p {
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+    color: #444444;
+    margin-top: 2rem;
+}
+
+.about h1 {
+    font-size: 2.4rem;
+    color: var(--color-text);
+}
+
+.begin h2,
+.recipes h2 {
+    font-size: 2rem;
+    margin-top: 3rem;
+    color: var(--color-text);
 }
