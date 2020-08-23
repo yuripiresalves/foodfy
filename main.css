@@ -154,3 +154,13 @@ main p {
     margin-top: 3rem;
     color: var(--color-text);
 }
+
+/* --------------- RECIPES --------------- */
+
+main .cards {
+    padding-bottom: 1rem;
+}
+
+main .card {
+    cursor: pointer;
+}
