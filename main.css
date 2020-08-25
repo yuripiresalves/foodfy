@@ -162,6 +162,10 @@ footer p {
     .card  {
         max-width: 100%;
     }
+
+    .modal {
+        width: 90%;
+    }
 }
 
 @media(max-width: 446px) {
@@ -176,10 +180,6 @@ footer p {
     header .menu-links {
         margin-left: 2rem;
     }
-/*     
-    header a:first-child img {
-        width: 90%;
-    } */
 
     header a+a {
         margin-left: 0;
@@ -201,6 +201,10 @@ footer p {
     main .cards,
     section .cards {
         grid-template-columns: 1fr;
+    }
+
+    .modal {
+        width: 90%;
     }
 }
 
