@@ -296,7 +296,7 @@ main .card {
 .modal-close a:hover {
     color: var(--color-text);
     cursor: pointer;
-    transition: .2s;
+    transition: color .2s;
 }
 
 /* --------------- MODAL.ACTIVE ----------------- */
