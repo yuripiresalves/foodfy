@@ -1,0 +1,25 @@
+/* ----------------- ABOUT ----------------- */
+
+main {
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+main p {
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+    color: #444444;
+    margin-top: 2rem;
+}
+
+.about h1 {
+    font-size: 2.4rem;
+    color: var(--color-text);
+}
+
+.begin h2,
+.recipes h2 {
+    font-size: 2rem;
+    margin-top: 3rem;
+    color: var(--color-text);
+}
