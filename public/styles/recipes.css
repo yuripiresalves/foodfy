@@ -1,0 +1,97 @@
+/* --------------- RECIPES --------------- */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+
+}
+
+.card {
+    max-width: 30rem;
+    cursor: pointer;
+}
+
+.card-image img {
+    width: 100%;
+    border-radius: 1.5rem;
+}
+
+.card-info h2 {
+    font-size: 1.8rem;
+    color: var(--color-text);
+    margin-top: 2rem;
+}
+
+.card-info p {
+    font-size: 1.4rem;
+    margin: .5rem 0 1rem;
+    color: #777777;
+}
+
+/* -------------- MODAL -------------------- */
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    visibility: hidden;
+}
+
+.modal {
+    width: 66rem;
+    background-color: white;
+    margin: 20vh auto;
+    border-radius: 1.6rem;
+    padding: 3rem;
+}
+
+.modal-image img {
+    border-radius: 1.5rem;
+    height: 20rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.modal-contents {
+    text-align: center;
+}
+
+.modal-contents h1 {
+    font-size: 2.4rem;
+    color: var(--color-text);
+    margin-top: 2rem;
+}
+
+.modal-contents p {
+    font-size: 1.8rem;
+    color: #777777;
+    margin-top: .5rem;
+}
+
+.modal-close {
+    text-align: center;
+    margin-top: 6rem;
+}
+
+.modal-close a {
+    font-size: 1.6rem;
+    color: #999999;
+}
+
+.modal-close a:hover {
+    color: var(--color-text);
+    cursor: pointer;
+    transition: color .2s;
+}
+
+/* --------------- MODAL.ACTIVE ----------------- */
+
+.modal-overlay.active {
+    visibility: visible;
+}
