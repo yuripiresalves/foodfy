@@ -13,6 +13,7 @@ main .info-box img {
 
 main .info-box h1 {
     font-size: 3.6rem;
+    color: #111111;
     margin-top: 5rem;
 }
 
@@ -22,23 +23,40 @@ main .info-box p {
     margin-top: 0.4rem;
 }
 
-.ingredients-box h1 {
+.ingredients-box h1,
+.preparation-box h1,
+.information-box h1 {
     font-size: 2.4rem;
     color: #111111;
+    margin-bottom: 2rem;
 }
 
-.ingredients-box h1 span {
+.ingredients-box h1 span,
+.preparation-box h1 span,
+.information-box h1 span {
     font-size: 1.2rem;
     color: #999999;
     margin-left: .8rem;
 }
 
 .ingredients-box ul {
-    margin-top: 2rem;
-    margin-left: 1.5rem;
+    margin: 2rem 0 4rem;
+    margin-left: 1.8rem;
 }
 
 .ingredients-box ul li {
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+}
+
+.preparation-box,
+.information-box {
+    margin-bottom: 5rem;
+}
+
+.preparation-box p,
+.information-box p {
     font-size: 18px;
     color: #444444;
     line-height: 28px;

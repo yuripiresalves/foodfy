@@ -1,58 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.njk" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/chef.png" type="image/x-icon">
+{% block head %}
+    <link rel="stylesheet" href="/styles/recipe.css">
+    <title>{{recipe.title}} | Foodfy</title>
+{% endblock head %}
 
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/recipe.css">
-    <link rel="stylesheet" href="styles/responsive.css">
+{% block content %}
+    <main>
+        <div class="info-box">
+            <img-container>
+                <img src="{{recipe.image}}" alt="Imgame de {{recipe.title}}">
+            </img-container>
+            <h1>{{recipe.title}}</h1>
+            <p>{{recipe.author}}</p>
+        </div class="info-box">
 
-    <title>Sobre | Foodfy</title>
-</head>
+        <div class="ingredients-box">
+            <h1>Ingredientes<span>ESCONDER</span></h1>
+            <ul>
+                {% for ingredient in recipe.ingredients %}
+                    <li>{{ingredient}}</li>
+                {% endfor %}
 
-<body>
-    <div id="container">
-        <header>
-            <div class="menu-img-logo">
-                <a href="/"><img src="assets/logo.png" alt="Logo Foodfy"></a>
-            </div>
-            <div class="menu-links">
-                <a href="/about" id="active">Sobre</a>
-                <a href="/recipes">Receitas</a>
-            </div>
-        </header>
+            </ul>
+        </div>
 
-        <main>
-            <div class="info-box">
-                <img-container>
-                    <img src="assets/burger.png" alt="asinha">
-                </img-container>
-                <h1>burguer</h1>
-                <p>por thcola</p>
-            </div class="info-box">
+        <div class="preparation-box">
+            <h1>Modo de preparo<span>MOSTRAR</span></h1>
 
-            <div class="ingredients-box">
-                <h1>Ingredientes<span>ESCONDER</span></h1>
-                <ul>
-                    <li>3 kg de carne</li>
-                    <li>3 kg de carne</li>
-                    <li>3 kg de carne</li>
-                    <li>3 kg de carne</li>
-                    <li>3 kg de carne</li>
-                </ul>
-            </div>
+            {% for preparation in recipe.preparation %}
+                <p>{{preparation}}</p>
+            {% endfor %}
+        </div>
 
+        <div class="information-box">
+            <h1>Informações adicionais<span>ESCONDER</span></h1>
 
-        </main>
+            <p>{{recipe.information}}</p>
+        </div>
+    </main>
 
-    </div>
-
-    <footer>
-        <p>Todos direitos reservados, receitas Foodfy.</p>
-    </footer>
-</body>
-
-</html>
+    <script src="scripts-recipe.js"></script>
+{% endblock content %}
