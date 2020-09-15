@@ -9,7 +9,9 @@ server.use(express.static('public'))
 server.set('view engine', 'njk')
 
 nunjucks.configure('views', {
-    express: server
+    express: server,
+    noCache: true,
+    autoescape: false
 })
 
 server.get('/', (req, res) => {
@@ -25,12 +27,18 @@ server.get('/recipes', (req, res) => {
 })
 
 server.get("/recipes/:index", function (req, res) {
-    const recipes = [] // Array de receitas carregadas do data.js
-    const recipeIndex = req.params.index
-  
-    return res.render('recipe', { recipes })
-    console.log(recipes[recipeIndex]);
+    const recipeIndex = req.params.index;
+
+    if(!recipes[recipeIndex]) {
+        res.render('not-found')
+    }
+    
+    return res.render('recipe', { recipe: recipes[recipeIndex] })
   })
+
+server.use((req, res) => {
+    res.status(404).render('not-found')
+})
 
 server.listen(5000, () => {
     console.log("pai ta on")
