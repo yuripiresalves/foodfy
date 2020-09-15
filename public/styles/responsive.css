@@ -65,14 +65,11 @@
 
     .box-image img {
         width: 13rem;
+        position: initial;
     }
 
     main .cards,
     section .cards {
         grid-template-columns: 1fr;
-    }
-
-    .modal {
-        width: 90%;
     }
 }
