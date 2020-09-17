@@ -26,7 +26,7 @@
         </div>
 
         <div class="preparation-box">
-            <h1>Modo de preparo<span>MOSTRAR</span></h1>
+            <h1>Modo de preparo<span>ESCONDER</span></h1>
 
             {% for preparation in recipe.preparation %}
                 <p>{{preparation}}</p>
@@ -35,10 +35,9 @@
 
         <div class="information-box">
             <h1>Informações adicionais<span>ESCONDER</span></h1>
-
-            <p>{{recipe.information}}</p>
+            <p>{{recipe.information.replace('\n\n', '<br><br>')}}</p>
         </div>
     </main>
 
-    <script src="scripts-recipe.js"></script>
+    <script src="/scripts-recipe.js"></script>
 {% endblock content %}
