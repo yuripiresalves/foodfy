@@ -39,6 +39,14 @@ main .info-box p {
     margin-left: .8rem;
 }
 
+.ingredients-box h1 span:hover,
+.preparation-box h1 span:hover,
+.information-box h1 span:hover {
+    cursor: pointer;
+    color: #777777;
+    transition: color .2s;
+}
+
 .ingredients-box ul {
     margin: 2rem 0 4rem;
     margin-left: 1.8rem;
@@ -60,4 +68,12 @@ main .info-box p {
     font-size: 18px;
     color: #444444;
     line-height: 28px;
+}
+
+/* ---------- ESCONDER-MOSTRAR ------------- */
+
+.ingredients-box.invisible li,
+.preparation-box.invisible p,
+.information-box.invisible p {
+    display: none;
 }
