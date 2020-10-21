@@ -1,43 +1,44 @@
 {% extends "layout.njk" %}
 
 {% block head %}
-    <link rel="stylesheet" href="/styles/recipe.css">
-    <title>{{recipe.title}} | Foodfy</title>
+  <link rel="stylesheet" href="/styles/recipe.css">
+  <title>{{recipe.title}}
+    | Foodfy</title>
 {% endblock head %}
 
 {% block content %}
-    <main>
-        <div class="info-box">
-            <img-container>
-                <img src="{{recipe.image}}" alt="Imgame de {{recipe.title}}">
-            </img-container>
-            <h1>{{recipe.title}}</h1>
-            <p>{{recipe.author}}</p>
-        </div class="info-box">
+  <main>
+    <div class="info-box">
+      <img-container>
+        <img src="{{recipe.image}}" alt="Imgame de {{recipe.title}}">
+      </img-container>
+      <h1>{{recipe.title}}</h1>
+      <p>{{recipe.author}}</p>
+    </div class="info-box">
 
-        <div class="ingredients-box">
-            <h1>Ingredientes<span>ESCONDER</span></h1>
-            <ul>
-                {% for ingredient in recipe.ingredients %}
-                    <li>{{ingredient}}</li>
-                {% endfor %}
+    <div class="ingredients-box">
+      <h1>Ingredientes<span>ESCONDER</span></h1>
+      <ul>
+        {% for ingredient in recipe.ingredients %}
+          <li>{{ingredient}}</li>
+        {% endfor %}
 
-            </ul>
-        </div>
+      </ul>
+    </div>
 
-        <div class="preparation-box">
-            <h1>Modo de preparo<span>ESCONDER</span></h1>
+    <div class="preparation-box">
+      <h1>Modo de preparo<span>ESCONDER</span></h1>
 
-            {% for preparation in recipe.preparation %}
-                <p>{{preparation}}</p>
-            {% endfor %}
-        </div>
+      {% for preparation in recipe.preparation %}
+        <p>{{preparation}}</p>
+      {% endfor %}
+    </div>
 
-        <div class="information-box">
-            <h1>Informações adicionais<span>ESCONDER</span></h1>
-            <p>{{recipe.information.replace('\n\n', '<br><br>')}}</p>
-        </div>
-    </main>
+    <div class="information-box">
+      <h1>Informações adicionais<span>ESCONDER</span></h1>
+      <p>{{recipe.information.replace('\n\n', '<br><br>')}}</p>
+    </div>
+  </main>
 
-    <script src="/scripts-recipe.js"></script>
+  <script src="/scripts-recipe.js"></script>
 {% endblock content %}

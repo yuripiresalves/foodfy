@@ -1,36 +1,36 @@
 {% extends "layout.njk" %}
 
 {% block head %}
-    <link rel="stylesheet" href="/styles/recipes.css">
-    <title>Receitas | Foodfy</title>
+  <link rel="stylesheet" href="/styles/recipes.css">
+  <title>Receitas | Foodfy</title>
 {% endblock head %}
 
 {% block links %}
-    <a href="/about">Sobre</a>
-    <a href="/recipes" id="active">Receitas</a>
-{% endblock links %}  
+  <a href="/about">Sobre</a>
+  <a href="/recipes" id="active">Receitas</a>
+{% endblock links %}
 
 {% block content %}
-    <main>
-        <div class="cards">
+  <main>
+    <div class="cards">
 
-            {% for recipe in recipes %}
+      {% for recipe in recipes %}
 
-                <div class="card">
-                    <div class="card-image">
-                        <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
-                    </div>
-                    <div class="card-info">
-                        <h2>{{recipe.title}}</h2>
-                        <p>por
-                            {{recipe.author}}</p>
-                    </div>
-                </div>
-
-            {% endfor %}
-
+        <div class="card">
+          <div class="card-image">
+            <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+          </div>
+          <div class="card-info">
+            <h2>{{recipe.title}}</h2>
+            <p>por
+              {{recipe.author}}</p>
+          </div>
         </div>
-    </main>
 
-    <script src="/scripts.js"></script>
+      {% endfor %}
+
+    </div>
+  </main>
+
+  <script src="/scripts.js"></script>
 {% endblock content %}
