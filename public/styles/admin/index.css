@@ -1,0 +1,48 @@
+.container {
+  max-width: 940px;
+  margin: 50px auto 0;
+}
+
+.container__title h1 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.container__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px
+}
+
+.card {
+  display: flex;
+}
+
+.card img {
+  height: 80px;
+  border-radius: 8.57px;
+  margin-right: 20px;
+}
+
+.card__information--title {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.card__information--author {
+  font-size: 14px;
+  font-weight: normal;
+  color: #777777;
+  padding: 5px 0 10px;
+}
+
+.card__information--view {
+  font-size: 14px;
+  font-weight: bold;
+  color: #6558C3;
+}
+
+.card__information--view:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

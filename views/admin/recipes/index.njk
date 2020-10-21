@@ -1,0 +1,66 @@
+{% extends 'admin/recipes/layout.njk' %}
+
+{% block head %}
+  <link rel="stylesheet" href="/styles/admin/index.css">
+  <title>Admin | Foodfy</title>
+{% endblock head %}
+
+{% block content %}
+
+  <div class="container">
+    <header class="container__title">
+      <h1>Gerenciar receitas</h1>
+    </header>
+
+    <section class="container__cards">
+      <div class="card">
+        <img src="/assets/burger.png" alt="burger">
+
+        <div class="card__information">
+          <h2 class="card__information--title">
+            Asinhas de frango ao barbecue
+          </h2>
+
+          <p class="card__information--author">
+            por Jorge Relato
+          </p>
+
+          <a class="card__information--view">Visualizar</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="/assets/burger.png" alt="burger">
+
+        <div class="card__information">
+          <h2 class="card__information--title">
+            Triplo bacon burger
+          </h2>
+
+          <p class="card__information--author">
+            por Jorge Relato
+          </p>
+
+          <a class="card__information--view">Visualizar</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="/assets/burger.png" alt="burger">
+
+        <div class="card__information">
+          <h2 class="card__information--title">
+            Triplo bacon burger
+          </h2>
+
+          <p class="card__information--author">
+            por Jorge Relato
+          </p>
+
+          <a class="card__information--view">Visualizar</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+{% endblock content %}
