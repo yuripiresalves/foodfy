@@ -1,5 +1,7 @@
+const data = require('./data')
+
 exports.index = (req, res) => {
-  return res.render('admin/recipes/index')
+  return res.render('admin/recipes/index', { recipes: data })
 }
 
 exports.create = (req, res) => {
@@ -7,7 +9,13 @@ exports.create = (req, res) => {
 }
 
 exports.show = (req, res) => {
-  return res.render('admin/recipes/show')
+  const recipeIndex = req.params.index
+
+  if (!data[recipeIndex]) {
+    return res.render('not-found')
+  }
+
+  return res.render('admin/recipes/show', { recipe: data[recipeIndex], recipeIndex })
 }
 
 exports.edit = (req, res) => {
