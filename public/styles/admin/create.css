@@ -1,7 +1,9 @@
-.new-recipe {
+
+
+.container {
+  position: relative;
   width: 940px;
   margin: 55px auto;
-  position: relative;
 }
 
 .new-recipe h3 {
@@ -53,7 +55,7 @@
   color: #7665f5;
 }
 
-button[type="submit"] {
+.new-recipe button {
   position: absolute;
   top: 0;
   right: 0;
@@ -67,7 +69,26 @@ button[type="submit"] {
   transition: background .2s;
 }
 
-button[type="submit"]:hover {
+.new-recipe button:hover {
   cursor: pointer;
   background: #7665f5;
+}
+
+.form-delete button {
+  position: absolute;
+  top: 0;
+  right: 160px;
+  background: #DC4747;
+  padding: 9px 20px;
+  border-radius: 4px;
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background .2s;
+}
+
+.form-delete button:hover {
+  cursor: pointer;
+  background: #f75a5a;
 }
