@@ -1,6 +1,5 @@
-
-
-.container {
+.container,
+.new-recipe {
   position: relative;
   width: 940px;
   margin: 55px auto;
