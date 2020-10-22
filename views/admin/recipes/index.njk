@@ -13,12 +13,31 @@
     </header>
 
     <section class="container__cards">
-      <div class="card">
+
+      {% for recipe in recipes %}
+        <div class="card">
+          <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+
+          <div class="card__information">
+            <h2 class="card__information--title">
+              {{ recipe.title }}
+            </h2>
+
+            <p class="card__information--author">
+              {{ recipe.author }}
+            </p>
+
+            <a href="/admin/recipes/{{ recipes.indexOf(recipe) }}" class="card__information--view">Visualizar</a>
+          </div>
+        </div>
+      {% endfor %}
+
+      {# <div class="card">
         <img src="/assets/burger.png" alt="burger">
 
         <div class="card__information">
           <h2 class="card__information--title">
-            Asinhas de frango ao barbecue
+            Triplo bacon burger
           </h2>
 
           <p class="card__information--author">
@@ -43,23 +62,7 @@
 
           <a class="card__information--view">Visualizar</a>
         </div>
-      </div>
-
-      <div class="card">
-        <img src="/assets/burger.png" alt="burger">
-
-        <div class="card__information">
-          <h2 class="card__information--title">
-            Triplo bacon burger
-          </h2>
-
-          <p class="card__information--author">
-            por Jorge Relato
-          </p>
-
-          <a class="card__information--view">Visualizar</a>
-        </div>
-      </div>
+      </div> #}
     </section>
   </div>
 
