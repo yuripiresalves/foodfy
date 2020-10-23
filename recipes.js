@@ -19,5 +19,13 @@ exports.show = (req, res) => {
 }
 
 exports.edit = (req, res) => {
-  return res.render('admin/recipes/edit')
+  const recipeIndex = req.params.index
+
+  if (!data[recipeIndex]) {
+    return res.render('not-found')
+  }
+
+  const recipe = data[recipeIndex]
+
+  return res.render('admin/recipes/edit', { recipe })
 }

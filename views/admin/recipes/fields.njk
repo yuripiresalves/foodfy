@@ -1,23 +1,27 @@
 <div class="item">
   <label for="img">Imagem da receita</label>
-  <input type="url" id="img" name="img">
+  <input type="url" id="img" name="img" value="{{ recipe.image }}">
 </div>
 
 <div class="item">
   <label for="ingredients">Ingredientes</label>
-  <input type="text" id="ingredients" name="ingredients">
+  {% for ingredient in recipe.ingredients %}
+    <input type="text" id="ingredients" name="ingredients" value="{{ ingredient }}" style="margin-bottom: 20px">
+  {% endfor %}
   <span>Adicionar novo ingrediente</span>
 </div>
 
 <div class="item">
   <label for="preparation">Modo de preparo</label>
-  <input type="text" id="preparation" name="preparation">
+  {% for preparation in recipe.preparation %}
+    <input type="text" id="preparation" name="preparation" value="{{ preparation }}" style="margin-bottom: 20px">
+  {% endfor %}
   <span>Adicionar novo passo</span>
 </div>
 
 <div class="item">
   <label for="more_information">Informações adicionais</label>
-  <textarea name="more_information" id="more_information" rows="10"></textarea>
+  <textarea name="more_information" id="more_information" rows="10">{{ recipe.information }}</textarea>
 </div>
 
 <button type="submit">Salvar receita</button>
