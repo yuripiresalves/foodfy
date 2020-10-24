@@ -26,7 +26,13 @@
 }
 
 .item input {
+  width: 100%;
   height: 49px;
+}
+
+.item .ingredient:not(:first-child), 
+.item .preparation:not(:first-child) {
+  margin-top: 15px;
 }
 
 .item input,
