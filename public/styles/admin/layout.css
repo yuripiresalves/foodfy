@@ -12,6 +12,10 @@
   box-sizing: border-box;
 }
 
+*, input, button, textarea {
+  font-family: 'Roboto', sans-serif;
+}
+
 .header {
   height: 80px;
   width: 100%;
