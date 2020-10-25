@@ -1,6 +1,16 @@
 <div class="item">
-  <label for="img">Imagem da receita</label>
-  <input type="url" id="img" name="img" value="{{ recipe.image }}">
+  <label for="image">Imagem da receita</label>
+  <input type="url" id="image" name="image" value="{{ recipe.image }}" required="required"/>
+</div>
+
+<div class="item">
+  <label for="title">Título da receita</label>
+  <input type="text" id="title" name="title" value="{{ recipe.title }}" required="required"/>
+</div>
+
+<div class="item">
+  <label for="author">Autor da receita</label>
+  <input type="text" id="author" name="author" value="{{ recipe.author }}" required="required"/>
 </div>
 
 <div class="item">
@@ -9,7 +19,7 @@
   {% if recipe == null %}
     <div id="ingredients__container">
       <div class="ingredient">
-        <input type="text" id="ingredients" name="ingredients[]" value="{{ ingredient }}"/>
+        <input type="text" id="ingredients" name="ingredients[]" value="{{ ingredient }}" required="required"/>
       </div>
     </div>
   {% endif %}
@@ -17,7 +27,7 @@
   <div id="ingredients__container">
     {% for ingredient in recipe.ingredients %}
       <div class="ingredient">
-        <input type="text" id="ingredients" name="ingredients[]" value="{{ ingredient }}"/>
+        <input type="text" id="ingredients" name="ingredients[]" value="{{ ingredient }}" required="required"/>
       </div>
     {% endfor %}
   </div>
@@ -31,7 +41,7 @@
   {% if recipe == null %}
     <div id="preparation__container">
       <div class="preparation">
-        <input type="text" id="preparation" name="preparation[]" value="{{ preparation }}">
+        <input type="text" id="preparation" name="preparation[]" value="{{ preparation }}" required="required"/>
       </div>
     </div>
   {% endif %}
@@ -39,7 +49,7 @@
   <div id="preparation__container">
     {% for preparation in recipe.preparation %}
       <div class="preparation">
-        <input type="text" id="preparation" name="preparation[]" value="{{ preparation }}">
+        <input type="text" id="preparation" name="preparation[]" value="{{ preparation }}" required="required"/>
       </div>
     {% endfor %}
   </div>
@@ -48,8 +58,8 @@
 </div>
 
 <div class="item">
-  <label for="more_information">Informações adicionais</label>
-  <textarea name="more_information" id="more_information" rows="10">{{ recipe.information }}</textarea>
+  <label for="information">Informações adicionais</label>
+  <textarea name="information" id="information" rows="10">{{ recipe.information }}</textarea>
 </div>
 
 <button type="submit">Salvar receita</button>
@@ -70,6 +80,9 @@
     newField
       .children[0]
       .value = "";
+    newField
+      .children[0]
+      .required = false;
     ingredients.appendChild(newField);
   }
 
@@ -88,6 +101,9 @@
     newField
       .children[0]
       .value = "";
+    newField
+      .children[0]
+      .required = false;
     preparation.appendChild(newField);
   }
 
