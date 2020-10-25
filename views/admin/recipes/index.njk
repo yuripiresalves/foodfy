@@ -27,42 +27,11 @@
               {{ recipe.author }}
             </p>
 
-            <a href="/admin/recipes/{{ recipes.indexOf(recipe) }}" class="card__information--view">Visualizar</a>
+            <a href="/admin/recipes/{{ recipe.id }}" class="card__information--view">Visualizar</a>
           </div>
         </div>
       {% endfor %}
 
-      {# <div class="card">
-        <img src="/assets/burger.png" alt="burger">
-
-        <div class="card__information">
-          <h2 class="card__information--title">
-            Triplo bacon burger
-          </h2>
-
-          <p class="card__information--author">
-            por Jorge Relato
-          </p>
-
-          <a class="card__information--view">Visualizar</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="/assets/burger.png" alt="burger">
-
-        <div class="card__information">
-          <h2 class="card__information--title">
-            Triplo bacon burger
-          </h2>
-
-          <p class="card__information--author">
-            por Jorge Relato
-          </p>
-
-          <a class="card__information--view">Visualizar</a>
-        </div>
-      </div> #}
     </section>
   </div>
 
