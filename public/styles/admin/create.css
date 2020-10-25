@@ -50,14 +50,35 @@
   resize: none;
 }
 
+.item .new-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 .item span {
   margin-top: 15px;
   color: #6558C3;
 }
 
+.item span.remove-ingredient {
+  color: #DC4747;
+}
+
+.item span.remove-preparation {
+  color: #DC4747;
+}
+
 .item span:hover {
   cursor: pointer;
   color: #7665f5;
+}
+
+.item span.remove-ingredient:hover {
+  color: #f75a5a;
+}
+
+.item span.remove-preparation:hover {
+  color: #f75a5a;
 }
 
 .new-recipe button {
