@@ -54,7 +54,7 @@
           <h3>Informações adicionais</h3>
 
           <p>
-            {{ recipe.information.replace('\n\n', '<br><br>') }}
+            {{ recipe.information.replace('\\n', '<br><br>') }}
           </p>
 
         </div>
@@ -63,7 +63,7 @@
 
     </main>
 
-    <a href="{{ recipeIndex }}/edit">Editar receita</a>
+    <a href="{{ recipe.id }}/edit">Editar receita</a>
   </div>
 
 {% endblock content %}
