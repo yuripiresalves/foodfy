@@ -34,10 +34,13 @@
       {% endfor %}
     </div>
 
-    <div class="information-box">
-      <h1>Informações adicionais<span>ESCONDER</span></h1>
-      <p>{{recipe.information.replace('\n\n', '<br><br>')}}</p>
-    </div>
+    {% if recipe.information != '' %}
+      <div class="information-box">
+        <h1>Informações adicionais<span>ESCONDER</span></h1>
+        <p>{{recipe.information.replace('\n\n', '<br><br>')}}</p>
+      </div>
+    {% endif %}
+
   </main>
 
   <script src="/scripts-recipe.js"></script>
