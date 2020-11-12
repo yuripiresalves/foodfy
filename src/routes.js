@@ -1,6 +1,7 @@
 const express = require('express');
 const routes = express.Router();
 const recipes = require('./app/controllers/recipes');
+const chefs = require('./app/controllers/chefs')
 const data = require('../data.json')
 
 // Routes do site
@@ -32,6 +33,16 @@ routes.get("/admin/recipes/:id/edit", recipes.edit); // Mostrar formulário de e
 routes.post("/admin/recipes", recipes.post); // Cadastrar nova receita
 routes.put("/admin/recipes", recipes.put); // Editar uma receita
 routes.delete("/admin/recipes", recipes.delete); // Deletar uma receita
+
+// Routes de Chefs
+routes.get("/admin/chefs", chefs.index); // Mostrar a lista de receitas
+routes.get("/admin/chefs/create", chefs.create); // Mostrar formulário de nova receita
+routes.get("/admin/chefs/:id", chefs.show); // Exibir detalhes de uma receita
+routes.get("/admin/chefs/:id/edit", chefs.edit); // Mostrar formulário de edição de receita
+
+routes.post("/admin/chefs", chefs.post); // Cadastrar nova receita
+routes.put("/admin/chefs", chefs.put); // Editar uma receita
+routes.delete("/admin/chefs", chefs.delete); // Deletar uma receita
 
 routes.use((req, res) => {  
   return res.status(404).render('not-found')
