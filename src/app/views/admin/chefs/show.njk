@@ -1,0 +1,121 @@
+{% extends 'admin/layout.njk' %}
+
+{% block head %}
+  <link rel="stylesheet" href="/styles/admin/show.css">
+  <title>{{ chef.name }}
+    | Foodfy</title>
+{% endblock head %}
+
+{% block content %}
+
+  <div class="container">
+    <h2 class="container__name">
+      Chef:
+      {{ chef.name }}
+    </h2>
+
+    <main class="container__chef">
+      <img class="container__chef--image" src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
+
+      <h1 class="container__chef--name">
+        {{ chef.name }}
+      </h1>
+      <p class="container__chef--recipes">
+        4 receitas
+      </p>
+
+      <h1 class="container__cards--title">
+        Receitas
+      </h1>
+
+      {# {% for recipe in recipes %}
+          <div class="card">
+            <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+
+            <div class="card__information">
+              <h2 class="card__information--title">
+                {{ recipe.title }}
+              </h2>
+
+              <p class="card__information--author">
+                {{ recipe.author }}
+              </p>
+
+              <a href="/admin/recipes/{{ recipe.id }}" class="card__information--view">Visualizar</a>
+            </div>
+          </div>
+        {% endfor %} #}
+      <section class="container__cards">
+
+        <div class="card">
+          <img src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/lasanha.png" alt="{{ recipe.title }}">
+
+          <div class="card__information">
+            <h2 class="card__information--title">
+              Lasanha
+            </h2>
+
+            <p class="card__information--author">
+              por Yuri
+            </p>
+
+            <a href="/admin/recipes/{{ recipe.id }}" class="card__information--view">Visualizar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/lasanha.png" alt="{{ recipe.title }}">
+
+          <div class="card__information">
+            <h2 class="card__information--title">
+              Lasanha
+            </h2>
+
+            <p class="card__information--author">
+              por Yuri
+            </p>
+
+            <a href="/admin/recipes/{{ recipe.id }}" class="card__information--view">Visualizar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/lasanha.png" alt="{{ recipe.title }}">
+
+          <div class="card__information">
+            <h2 class="card__information--title">
+              Lasanha
+            </h2>
+
+            <p class="card__information--author">
+              por Yuri
+            </p>
+
+            <a href="/admin/recipes/{{ recipe.id }}" class="card__information--view">Visualizar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/lasanha.png" alt="{{ recipe.title }}">
+
+          <div class="card__information">
+            <h2 class="card__information--title">
+              Lasanha
+            </h2>
+
+            <p class="card__information--author">
+              por Yuri
+            </p>
+
+            <a href="/admin/recipes/{{ recipe.id }}" class="card__information--view">Visualizar</a>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <a class="button" href="{{ chef.id }}/edit">Editar chef</a>
+  </div>
+
+{% endblock content %}

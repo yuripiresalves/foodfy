@@ -1,11 +1,13 @@
 .container,
-.new-recipe {
+.new-recipe,
+.new-chef {
   position: relative;
   width: 940px;
   margin: 55px auto;
 }
 
-.new-recipe h3 {
+.new-recipe,
+.new-chef h3 {
   font-size: 24px;
 }
 
@@ -81,7 +83,8 @@
   color: #f75a5a;
 }
 
-.new-recipe button {
+.new-recipe button,
+.new-chef button {
   position: absolute;
   top: 0;
   right: 0;
@@ -95,7 +98,8 @@
   transition: background .2s;
 }
 
-.new-recipe button:hover {
+.new-recipe button:hover,
+.new-chef button:hover {
   cursor: pointer;
   background: #7665f5;
 }
