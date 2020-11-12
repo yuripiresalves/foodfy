@@ -13,14 +13,14 @@ module.exports = {
   post(req, res) {
 
     Recipe.create(req.body, (recipe) => {
-      return res.redirect(`admin/recipes/${recipe.id}`)
+      return res.redirect(`recipes/${recipe.id}`)
     })
 
   },
   show(req, res) {
     
     Recipe.find(req.params.id, (recipe) => {
-      if (!recipe) return res.render('/not-found')
+      if (!recipe) return res.render('not-found')
 
       return res.render('admin/recipes/show', { recipe })
     })
@@ -29,9 +29,9 @@ module.exports = {
   edit(req, res) {
 
     Recipe.find(req.params.id, (recipe) => {
-      if (!recipe) return res.render('/not-found')
+      if (!recipe) return res.render('not-found')
 
-      return res.render('admin/recipes/edit', { recipe })
+      return res.render('recipes/edit', { recipe })
     })
 
 
