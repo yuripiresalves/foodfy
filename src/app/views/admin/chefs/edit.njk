@@ -7,7 +7,7 @@
 
 {% block content %}
   <div class="container">
-    <form class="new-recipe" action="admin/chef?_method=PUT" method="post">
+    <form class="new-recipe" action="/admin/chefs?_method=PUT" method="post">
       <h3>Editando chef</h3>
 
       {% include 'admin/chefs/fields.njk'%}
@@ -15,7 +15,7 @@
       <input type="hidden" name="id" value="{{ chef.id }}">
     </form>
 
-    <form class="form-delete" action="admin/chefs?_method=DELETE" method="post">
+    <form class="form-delete" action="/admin/chefs?_method=DELETE" method="post">
       <button type="submit">Deletar</button>
 
       <input type="hidden" name="id" value="{{ chef.id }}">
