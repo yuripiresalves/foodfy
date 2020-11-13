@@ -13,7 +13,7 @@ module.exports = {
   post(req, res) {
 
     Chef.create(req.body, (chef) => {
-      return res.redirect(`admin/chefs/${chef.id}`)
+      return res.redirect(`chefs/${chef.id}`)
     })
 
   },

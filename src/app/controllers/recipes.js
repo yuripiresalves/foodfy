@@ -31,7 +31,7 @@ module.exports = {
     Recipe.find(req.params.id, (recipe) => {
       if (!recipe) return res.render('not-found')
 
-      return res.render('recipes/edit', { recipe })
+      return res.render('admin/recipes/edit', { recipe })
     })
 
 
