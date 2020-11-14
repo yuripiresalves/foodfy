@@ -41,9 +41,10 @@ module.exports = {
   },
   find(id, callback) {
     db.query(`
-      SELECT *
+      SELECT recipes.*, chefs.name AS chef_name
       FROM recipes
-      WHERE id = $1`, [id], (err, results) => {
+      LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+      WHERE recipes.id = $1`, [id], (err, results) => {
         if (err) throw `Database Error! ${err}`
 
         callback(results.rows[0])
@@ -56,9 +57,8 @@ module.exports = {
         title=($2),
         ingredients=($3),
         preparation=($4),
-        information=($5),
-        created_at=($6)
-      WHERE id = $7
+        information=($5)
+      WHERE id = $6
     ` 
 
     const values = [
@@ -67,7 +67,6 @@ module.exports = {
       data.ingredients,
       data.preparation,
       data.information,
-      data.created_at,
       data.id
     ]
 
@@ -82,6 +81,13 @@ module.exports = {
       if (err) throw `Database Error! ${err}`
 
       return callback()
+    })
+  },
+  chefsSelectOptions(callback) {
+    db.query(`SELECT name, id FROM chefs`, (err, results) => {
+      if (err) throw `Database Error! ${err}`
+
+      callback(results.rows)
     })
   }
 }

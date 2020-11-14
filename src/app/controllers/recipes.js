@@ -4,11 +4,16 @@ module.exports = {
   index(req, res) {
 
     Recipe.all((recipes) => {
-      return res.render('admin/recipes/index', { recipes})
+      return res.render('admin/recipes/index', { recipes })
     })
   },
   create(req, res) {
-    return res.render('admin/recipes/create')
+
+    Recipe.chefsSelectOptions((options) => {
+      return res.render('admin/recipes/create', { chefOptions: options })
+
+    })
+
   },
   post(req, res) {
 
@@ -18,7 +23,7 @@ module.exports = {
 
   },
   show(req, res) {
-    
+
     Recipe.find(req.params.id, (recipe) => {
       if (!recipe) return res.render('not-found')
 
@@ -31,7 +36,11 @@ module.exports = {
     Recipe.find(req.params.id, (recipe) => {
       if (!recipe) return res.render('not-found')
 
-      return res.render('admin/recipes/edit', { recipe })
+      Recipe.recipesSelectOptions((options) => {
+        return res.render('admin/recipes/edit', { recipe, chefOptions: options })
+
+      })
+
     })
 
 
@@ -44,7 +53,7 @@ module.exports = {
 
   },
   delete(req, res) {
-    
+
     Recipe.delete(req.body.id, () => {
       return res.redirect('recipes')
     })
