@@ -4,7 +4,7 @@ module.exports = {
   index(req, res) {
 
     Chef.all((chefs) => {
-      return res.render('admin/chefs/index', { chefs})
+      return res.render('admin/chefs/index', { chefs })
     })
   },
   create(req, res) {
@@ -18,13 +18,14 @@ module.exports = {
 
   },
   show(req, res) {
-    
+
     Chef.find(req.params.id, (chef) => {
       if (!chef) return res.render('not-found')
 
-      return res.render('admin/chefs/show', { chef })
+      Chef.findRecipesByChef(req.params.id, recipes => {
+        return res.render("admin/chefs/show", { chef, recipes })
+      })
     })
-
   },
   edit(req, res) {
 
@@ -44,7 +45,7 @@ module.exports = {
 
   },
   delete(req, res) {
-    
+
     Chef.delete(req.body.id, () => {
       return res.redirect('chefs')
     })
