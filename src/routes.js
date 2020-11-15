@@ -1,51 +1,65 @@
-const express = require('express');
-const routes = express.Router();
-const recipes = require('./app/controllers/recipes');
+const express = require('express')
+const routes = express.Router()
+const recipes = require('./app/controllers/recipes')
+const Recipe = require('./app/models/Recipe')
 const chefs = require('./app/controllers/chefs')
-const data = require('../data.json')
 
-// Routes do site
+// Site
 routes.get('/', (req, res) => {
-  return res.render('index', { recipes: data.recipes })
+
+  Recipe.all((recipes) => {
+    return res.render('index', { recipes })
+
+  })
 })
 routes.get('/about', (req, res) => {
   return res.render('about')
 })
 routes.get('/recipes', (req, res) => {
-  return res.render('recipes', { recipes: data.recipes })
+
+  Recipe.all((recipes) => {
+    return res.render('recipes', { recipes })
+
+  })
 })
-routes.get("/recipes/:index", function (req, res) {
-  const recipeIndex = req.params.index;
+routes.get("/recipes/:id", function (req, res) {
+  // const recipeIndex = req.params.index;
 
-  if (!data.recipes[recipeIndex]) {
-    return res.render('not-found')
-  }
+  // if (!data.recipes[recipeIndex]) {
+  //   return res.render('not-found')
+  // }
 
-  return res.render('recipe', { recipe: data.recipes[recipeIndex] })
+  // return res.render('recipe', { recipe: data.recipes[recipeIndex] })
+
+  Recipe.find(req.params.id, (recipe) => {
+    if (!recipe) return res.render('not-found')
+
+    return res.render('recipes', { recipe })
+  })
 })
 
-// Routes do Admin
-routes.get("/admin/recipes", recipes.index); // Mostrar a lista de receitas
-routes.get("/admin/recipes/create", recipes.create); // Mostrar formulário de nova receita
-routes.get("/admin/recipes/:id", recipes.show); // Exibir detalhes de uma receita
-routes.get("/admin/recipes/:id/edit", recipes.edit); // Mostrar formulário de edição de receita
+// Admin
+routes.get("/admin/recipes", recipes.index)
+routes.get("/admin/recipes/create", recipes.create)
+routes.get("/admin/recipes/:id", recipes.show)
+routes.get("/admin/recipes/:id/edit", recipes.edit)
 
-routes.post("/admin/recipes", recipes.post); // Cadastrar nova receita
-routes.put("/admin/recipes", recipes.put); // Editar uma receita
-routes.delete("/admin/recipes", recipes.delete); // Deletar uma receita
+routes.post("/admin/recipes", recipes.post)
+routes.put("/admin/recipes", recipes.put)
+routes.delete("/admin/recipes", recipes.delete)
 
-// Routes de Chefs
-routes.get("/admin/chefs", chefs.index); // Mostrar a lista de receitas
-routes.get("/admin/chefs/create", chefs.create); // Mostrar formulário de nova receita
-routes.get("/admin/chefs/:id", chefs.show); // Exibir detalhes de uma receita
-routes.get("/admin/chefs/:id/edit", chefs.edit); // Mostrar formulário de edição de receita
+// Chefs
+routes.get("/admin/chefs", chefs.index)
+routes.get("/admin/chefs/create", chefs.create)
+routes.get("/admin/chefs/:id", chefs.show)
+routes.get("/admin/chefs/:id/edit", chefs.edit)
 
-routes.post("/admin/chefs", chefs.post); // Cadastrar nova receita
-routes.put("/admin/chefs", chefs.put); // Editar uma receita
-routes.delete("/admin/chefs", chefs.delete); // Deletar uma receita
+routes.post("/admin/chefs", chefs.post)
+routes.put("/admin/chefs", chefs.put)
+routes.delete("/admin/chefs", chefs.delete)
 
 routes.use((req, res) => {  
   return res.status(404).render('not-found')
 })
 
-module.exports = routes;
+module.exports = routes
