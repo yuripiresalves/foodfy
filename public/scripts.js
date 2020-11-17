@@ -1,8 +1,17 @@
 const cards = document.querySelectorAll('.card')
 
-for (let i = 0; i < cards.length; i++) {
-  const card = cards[i];
+for (const card of cards) {
   card.addEventListener('click', () => {
-    window.location.href = `/recipes/${i}`
+    let id = card.getAttribute('id')
+    window.location.href = `/recipes/${id}`
   })
+}
+
+const currentPage = location.pathname
+const menuItems = document.querySelectorAll('.menu-links a')
+
+for (item of menuItems) {
+  if (currentPage.includes(item.getAttribute('href'))) {
+    item.classList.add('active')
+  }
 }

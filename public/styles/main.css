@@ -34,7 +34,7 @@ header .menu-links {
     text-decoration: none;
 }
 
-.menu-links a#active {
+.menu-links a.active {
     font-weight: bold;
 }
 
