@@ -9,6 +9,8 @@ routes.get('/', site.index)
 routes.get('/about', site.about)
 routes.get('/recipes', site.all)
 routes.get("/recipes/:id", site.show)
+routes.get("/results", site.index)
+routes.get("/chefs", site.chefs)
 
 // Admin
 routes.get("/admin/recipes", recipes.index)
