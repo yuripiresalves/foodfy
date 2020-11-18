@@ -57,13 +57,22 @@
   gap: 30px 20px;
 }
 
-.card.chef .card__information{
+.card__chef {
+  display: flex;
+}
+
+.card__chef .card__information{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
-.card.chef img {
+.card__chef .card__information--recipes{
+  font-size: 14px;
+  color: #666666;
+}
+
+.card__chef img {
   width: 64px;
   height: 64px;
   border-radius: 50%;
