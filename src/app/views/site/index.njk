@@ -6,6 +6,15 @@
   <title>Foodfy</title>
 {% endblock head %}
 
+{% block search %}
+  <div class="search">
+    <form action="/results" method="get">
+      <input type="text" name="filter" placeholder="Buscar uma receita" required="required">
+      <button type="submit">Buscar</button>
+    </form>
+  </div>
+{% endblock search %}
+
 {% block content %}
 
   <div class="box">
@@ -26,7 +35,7 @@
 
       {% for recipe in recipes %}
 
-        <div class="card" id="">
+        <div class="card" id="{{recipe.id}}">
           <div class="card-image">
             <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
           </div>

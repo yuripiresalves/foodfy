@@ -51,10 +51,22 @@ module.exports = {
       FROM recipes
       LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
       WHERE recipes.id = $1`, [id], (err, results) => {
-        if (err) throw `Database Error! ${err}`
+      if (err) throw `Database Error! ${err}`
 
-        callback(results.rows[0])
-      })
+      callback(results.rows[0])
+    })
+  },
+  findBy(filter, callback) {
+    db.query(`
+    SELECT recipes.*, chefs.name AS chef_name 
+    FROM recipes
+    LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+    WHERE recipes.title ILIKE '%${filter}%'
+    ORDER BY recipes.id ASC`, (err, results) => {
+      if (err) throw `Database Error! ${err}`
+
+      callback(results.rows)
+    })
   },
   update(data, callback) {
     const query = `
@@ -66,7 +78,7 @@ module.exports = {
         information=($5),
         chef_id=($6)
       WHERE id = $7
-    ` 
+    `
 
     const values = [
       data.image,
