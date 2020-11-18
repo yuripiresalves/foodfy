@@ -1,3 +1,39 @@
+.search form {
+    display: grid;
+    grid-template-columns: 1fr 90px;
+    align-items: center;
+    grid-gap: 8px;
+}
+
+.search form input {
+    padding: 10px 15px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    outline: 0;
+}
+
+.search form input:placeholder-shown {
+    font-size: 14px;
+    color: #999999;
+}
+
+.search form button {
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #6558C3;
+    border: none;
+    border-radius: 4px;
+    transition: .2s;
+}
+
+.search form button:hover {
+    cursor: pointer;    
+    background-color: #7665f5;
+
+}
+
 .box {
     background-color: #FBDFDB;
     width: 100%;
@@ -46,7 +82,9 @@ section h1 {
 
 .card {
     max-width: 30rem;
+    cursor: pointer;
 }
+
 
 .card-image img {
     width: 100%;
