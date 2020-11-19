@@ -45,9 +45,21 @@ module.exports = {
 
   },
   delete(req, res) {
+    const id = req.body.id
 
-    Chef.delete(req.body.id, () => {
-      return res.redirect('chefs')
+    Chef.find(id, (chef) => {
+
+      Chef.findRecipesByChef(id, (recipes) => {
+
+        if (recipes.length == 0) {
+          Chef.delete(id, () => {
+            return res.redirect('chefs')
+          })
+        }
+        else {
+          return res.send("Não é possível deletar este chef pois ele possui pelo menos uma receita!")
+        }
+      })
     })
   }
 }
