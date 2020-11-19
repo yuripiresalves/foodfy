@@ -16,6 +16,7 @@
 
 .card {
   display: flex;
+  cursor: pointer;
 }
 
 .card img {
