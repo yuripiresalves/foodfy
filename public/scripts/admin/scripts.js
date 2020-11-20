@@ -1,3 +1,14 @@
+// MENU ACTIVE
+const currentPage = location.pathname
+const menuItems = document.querySelectorAll('.menu-links a')
+
+for (item of menuItems) {
+  if (currentPage.includes(item.getAttribute('href'))) {
+    item.classList.add('active')
+  }
+}
+
+// ADD AND REMOVE INGREDIENTS AND PREPARATION
 function addIngredient() {
   const ingredients = document.querySelector('#ingredients__container');
   const fieldContainer = document.querySelectorAll(".ingredient");
@@ -83,3 +94,12 @@ document
 document
   .querySelector(".remove-preparation")
   .addEventListener("click", removePreparation);
+
+// CONFIRM DELETE RECIPE AND CHEF
+// const formDelete = document.querySelector('.form-delete')
+// formDelete.addEventListener('submit', (event) => {
+//   const confirmation = confirm('Gostaria mesmo de deletar?')
+//   if (!confirmation) {
+//     event.preventDefault()
+//   }
+// })
