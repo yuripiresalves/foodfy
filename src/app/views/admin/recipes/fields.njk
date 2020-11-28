@@ -1,6 +1,9 @@
 <div class="item">
   <label for="image">Imagem da receita</label>
-  <input type="url" id="image" name="image" value="{{ recipe.image }}" required="required"/>
+  <div id="photos-upload">
+    <input type="file" id="image" name="image" multiple accept="image/*" value="{{ recipe.image }}" required="required"/>
+    <i class="material-icons">add</i>
+  </div>
 </div>
 
 <div class="item">

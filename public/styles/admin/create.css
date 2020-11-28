@@ -51,6 +51,37 @@
   background-color: transparent;
 }
 
+.item #photos-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 149px;
+  height: 149px;
+  position: relative;
+  /* display: block; */
+  overflow: hidden;
+  border: 1px solid #DDDDDD;
+  border-radius: 3.5px;
+}
+
+.item #photos-upload i {
+  color: #777777;
+  font-size: 38px;
+  /* font-weight: bold; */
+}
+
+.item input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+  cursor: pointer;
+}
+
 /* .item select {
   color: #999999;
   font-weight: normal;
