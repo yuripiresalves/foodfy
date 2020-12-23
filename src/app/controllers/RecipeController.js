@@ -40,8 +40,7 @@ module.exports = {
     if (!recipe) return res.render('not-found')
 
     results = await Recipe.files(recipe.id)
-    let files = results.rows
-    files = files.map(file => ({
+    const files = results.rows.map(file => ({
       ...file,
       src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
     }))
@@ -76,7 +75,7 @@ module.exports = {
 
     if (req.files.length != 0) {
       const newFilesPromisse = req.files.map(file => 
-        File.create({...file, product_id: req.body.id}))
+        File.createRecipeFile({...file, recipe_id: req.body.id}))
 
       await Promise.all(newFilesPromisse)
     }
@@ -90,14 +89,16 @@ module.exports = {
 
       await Promise.all(removedFilesPromise)
 
-      return res.redirect(`recipes/${req.body.id}`)
     }
+    
+    await Recipe.update(req.body)
 
+    return res.redirect(`recipes/${req.body.id}`)
   },
-  delete(req, res) {
+  async delete(req, res) {
 
-    Recipe.delete(req.body.id, () => {
-      return res.redirect('recipes')
-    })
+    await Recipe.delete(req.body.id)
+
+    return res.redirect('recipes')
   }
 }
