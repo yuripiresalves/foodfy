@@ -4,8 +4,33 @@
 </div>
 
 <div class="item">
-  <label for="avatar_url">Avatar</label>
-  <input type="url" id="avatar_url" name="avatar_url" value="{{ chef.avatar_url }}" required="required"/>
+  <label for="photos">Avatar</label>
+  <div class="photos-container">
+
+    <div id="photos-upload">
+      <input 
+        id="photos-input" 
+        type="file" 
+        name="photos" 
+        accept="image/*" 
+        {# required="required" #}
+        onchange="PhotosUpload.handleFileInput(event, 1)"
+      />
+      <i class="material-icons">add</i>
+    </div>
+
+    <div id="photos-preview">
+      {% if files %}
+        {% for image in files %}
+          <div class="photo" id="{{image.id}}">
+            <img src="{{image.src}}" alt="{{image.name}}">
+            <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">close</i>
+          </div>
+        {% endfor %}
+        <input type="hidden" name="removed_files">
+      {% endif %}
+    </div>
+  </div>
 </div>
 
 <button type="submit">Salvar chef</button>
