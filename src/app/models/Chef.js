@@ -2,41 +2,33 @@ const { date } = require('../../lib/utils')
 const db = require('../../config/db')
 
 module.exports = {
-  all(callback) {
+  all() {
 
-    db.query(`
+    return db.query(`
     SELECT chefs.*, count(recipes) AS total_recipes 
     FROM chefs
     LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
     GROUP BY chefs.id
-    ORDER BY chefs.name ASC`, (err, results) => {
-      if (err) throw `Database Error! ${err}`
-
-      callback(results.rows)
-    })
+    ORDER BY chefs.name ASC`)
 
   },
-  create(data, callback) {
+  create(data, file_id) {
     const query = `
       INSERT INTO chefs (
         name,
-        avatar_url,
+        file_id,
         created_at
-      ) VALUES ($1, $2 ,$3)
+      ) VALUES ($1, $2, $3)
       RETURNING id
     `
 
     const values = [
       data.name,
-      data.avatar_url,
+      file_id,
       date(Date.now()).iso
     ]
 
-    db.query(query, values, (err, results) => {
-      if (err) throw `Database Error! ${err}`
-
-      callback(results.rows[0])
-    })
+    db.query(query, values)
   },
   find(id, callback) {
     db.query(`
@@ -45,10 +37,10 @@ module.exports = {
       LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
       WHERE chefs.id = $1
       GROUP BY chefs.id`, [id], (err, results) => {
-        if (err) throw `Database Error! ${err}`
+      if (err) throw `Database Error! ${err}`
 
-        callback(results.rows[0])
-      })
+      callback(results.rows[0])
+    })
   },
   findRecipesByChef(id, callback) {
     db.query(`
@@ -68,7 +60,7 @@ module.exports = {
         avatar_url=($2),
         created_at=($3)
       WHERE id = $4
-    ` 
+    `
 
     const values = [
       data.name,
