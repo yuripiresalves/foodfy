@@ -7,7 +7,7 @@
 
 {% block content %}
   <div class="container">
-    <form class="new-recipe" action="/admin/chefs?_method=PUT" method="post">
+    <form class="new-recipe" action="/admin/chefs?_method=PUT" method="post" enctype="multipart/form-data">
       <h3>Editando chef</h3>
 
       {% include 'admin/chefs/fields.njk'%}
