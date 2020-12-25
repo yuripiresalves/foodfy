@@ -74,10 +74,10 @@ module.exports = {
   async put(req, res) {
 
     if (req.files.length != 0) {
-      const newFilesPromisse = req.files.map(file => 
+      const newFilesPromise = req.files.map(file => 
         File.createRecipeFile({...file, recipe_id: req.body.id}))
 
-      await Promise.all(newFilesPromisse)
+      await Promise.all(newFilesPromise)
     }
 
     if (req.body.removed_files) {
