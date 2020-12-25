@@ -28,58 +28,62 @@ module.exports = {
       date(Date.now()).iso
     ]
 
-    db.query(query, values)
+    return db.query(query, values)
   },
-  find(id, callback) {
-    db.query(`
+  find(id) {
+    return db.query(`
       SELECT chefs.*, count(recipes) AS total_recipes
       FROM chefs
       LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
       WHERE chefs.id = $1
-      GROUP BY chefs.id`, [id], (err, results) => {
-      if (err) throw `Database Error! ${err}`
-
-      callback(results.rows[0])
-    })
+      GROUP BY chefs.id`, [id])
   },
-  findRecipesByChef(id, callback) {
-    db.query(`
+  findRecipesByChef(id) {
+    return db.query(`
     SELECT recipes.*, chefs.name AS chef_name
     FROM recipes
     INNER JOIN chefs ON (recipes.chef_id = chefs.id)
-    WHERE chefs.id = $1`, [id], (err, results) => {
-      if (err) throw `Find By Chef Error! ${err}`
-
-      callback(results.rows)
-    })
+    WHERE chefs.id = $1`, [id])
   },
-  update(data, callback) {
+  update(data, file_id) {
     const query = `
       UPDATE chefs SET
         name=($1),
-        avatar_url=($2),
-        created_at=($3)
-      WHERE id = $4
+        file_id=($2)
+      WHERE id = $3
     `
 
     const values = [
       data.name,
-      data.avatar_url,
-      data.created_at,
+      file_id,
       data.id
     ]
 
-    db.query(query, values, (err, results) => {
-      if (err) throw `Database Error! ${err}`
-
-      callback()
-    })
+    return db.query(query, values)
   },
-  delete(id, callback) {
-    db.query(`DELETE FROM chefs WHERE id = $1`, [id], (err, results) => {
-      if (err) throw `Database Error! ${err}`
+  async delete(id) {
+    try {
+      const results = await db.query(`
+        SELECT files.* FROM files
+        INNER JOIN chefs ON (files.id = chefs.file_id)
+        WHERE chefs.id = $1`, [id]
+      )
+      const removedFiles = results.rows.map( async file => {
+        fs.unlinkSync(file.path)
 
-      return callback()
-    })
+        await db.query(`DELETE FROM chefs WHERE id = $1`, [id])
+        return db.query(`DELETE FROM files WHERE id = $1`, [file.id])
+      })
+    }
+    catch (err) {
+      console.error(err)
+    }
+  },
+  files(id) {
+    return db.query(`
+      SELECT files.* FROM files
+      LEFT JOIN chefs ON (files.id = chefs.file_id)
+      WHERE chefs.id = $1
+    `, [id])
   }
 }
