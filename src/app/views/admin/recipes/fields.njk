@@ -9,9 +9,9 @@
         name="photos" 
         multiple 
         accept="image/*" 
-        value="{{ recipe.image }}" 
-        required="required"
-        onchange="PhotosUpload.handleFileInput(event)"
+        {# value="{{ recipe.image }}"  #}
+        {# required="required" #}
+        onchange="PhotosUpload.handleFileInput(event, 5)"
       />
       <i class="material-icons">add</i>
     </div>
