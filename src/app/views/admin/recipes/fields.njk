@@ -9,8 +9,9 @@
         name="photos" 
         multiple 
         accept="image/*" 
-        {# value="{{ recipe.image }}"  #}
-        {# required="required" #}
+        {% if not files %}
+          required="required"
+        {% endif %}
         onchange="PhotosUpload.handleFileInput(event, 5)"
       />
       <i class="material-icons">add</i>
