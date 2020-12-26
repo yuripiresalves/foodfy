@@ -29,7 +29,7 @@ module.exports = {
     const filesPromise = req.files.map(file => File.createRecipeFile({ ...file, recipe_id: recipeId }))
     await Promise.all(filesPromise)
 
-    return res.redirect(`recipes/${recipeId}/edit`)
+    return res.redirect(`recipes/${recipeId}`)
 
   },
   async show(req, res) {
