@@ -36,24 +36,20 @@ module.exports = {
 
     return db.query(query, values)
   },
-  find(id, callback) {
+  find(id) {
     return db.query(`
       SELECT recipes.*, chefs.name AS chef_name
       FROM recipes
       LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
       WHERE recipes.id = $1`, [id])
   },
-  findBy(filter, callback) {
-    db.query(`
+  findBy(filter) {
+    return db.query(`
     SELECT recipes.*, chefs.name AS chef_name 
     FROM recipes
     LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
     WHERE recipes.title ILIKE '%${filter}%'
-    ORDER BY recipes.id ASC`, (err, results) => {
-      if (err) throw `Database Error! ${err}`
-
-      callback(results.rows)
-    })
+    ORDER BY recipes.id ASC`)
   },
   update(data) {
     const query = `
@@ -100,7 +96,7 @@ module.exports = {
     
   },
   paginate(params) {
-    const { filter, limit, offset, callback } = params
+    const { filter, limit, offset } = params
 
     let query = "",
       filterQuery = "",
@@ -128,11 +124,7 @@ module.exports = {
     LIMIT $1 OFFSET $2
     `
 
-    db.query(query, [limit, offset], (err, results) => {
-      if (err) throw `Database Error! ${err}`
-
-      callback(results.rows)
-    })
+    return db.query(query, [limit, offset])
   },
   files(id) {
     return db.query(`
