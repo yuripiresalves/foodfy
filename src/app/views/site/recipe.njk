@@ -9,9 +9,13 @@
 {% block content %}
   <main>
     <div class="info-box">
-      <img-container>
-        <img src="{{recipe.image}}" alt="Imgame de {{recipe.title}}">
-      </img-container>
+      <div class="img-container">
+        {% if not files[0] %}
+          <img src="http://placehold.it/940x280?text=RECEITA SEM IMAGEM">
+        {% else %}
+          <img src="{{files[0].src}}" alt="Imgame de {{recipe.title}}">
+        {% endif %}
+      </div>
       <h1>{{recipe.title}}</h1>
       <p>{{recipe.author}}</p>
     </div class="info-box">
