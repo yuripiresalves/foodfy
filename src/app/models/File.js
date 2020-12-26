@@ -5,12 +5,12 @@ module.exports = {
   create({ filename, path }) {
     try {
       const query = `
-      INSERT INTO files (
-        name,
-        path
-      ) VALUES ($1, $2)
-      RETURNING id
-    `
+        INSERT INTO files (
+          name,
+          path
+        ) VALUES ($1, $2)
+        RETURNING id
+      `
 
       const values = [
         filename,
@@ -20,20 +20,19 @@ module.exports = {
       return db.query(query, values)
 
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
-
   },
 
   async createRecipeFile({ filename, path, recipe_id }) {
     try {
       let query = `
-      INSERT INTO files (
-        name,
-        path
-      ) VALUES ($1, $2)
-      RETURNING id
-    `
+        INSERT INTO files (
+          name,
+          path
+        ) VALUES ($1, $2)
+        RETURNING id
+      `
 
       let values = [
         filename,
@@ -44,12 +43,12 @@ module.exports = {
       const fileId = results.rows[0].id
 
       query = `
-          INSERT INTO recipe_files (
-            recipe_id,
-            file_id
-          ) VALUES ($1, $2)
-          RETURNING id
-        `
+        INSERT INTO recipe_files (
+          recipe_id,
+          file_id
+        ) VALUES ($1, $2)
+        RETURNING id
+      `
 
       values = [
         recipe_id,
@@ -59,7 +58,7 @@ module.exports = {
       return db.query(query, values)
 
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   },
 
@@ -73,8 +72,8 @@ module.exports = {
       await db.query(`DELETE FROM recipe_files WHERE recipe_files.file_id = $1`, [id])
 
       return db.query(`
-      DELETE FROM files WHERE id = $1
-    `, [id])
+        DELETE FROM files WHERE id = $1
+      `, [id])
 
     } catch (err) {
       console.error(err)
