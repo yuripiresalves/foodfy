@@ -1,4 +1,3 @@
-const { date } = require('../../lib/utils')
 const db = require('../../config/db')
 const fs = require('fs')
 
@@ -24,16 +23,14 @@ module.exports = {
       const query = `
         INSERT INTO chefs (
           name,
-          file_id,
-          created_at
-        ) VALUES ($1, $2, $3)
+          file_id
+        ) VALUES ($1, $2)
         RETURNING id
       `
 
       const values = [
         data.name,
         file_id,
-        date(Date.now()).iso
       ]
 
       return db.query(query, values)
@@ -65,6 +62,7 @@ module.exports = {
         FROM recipes
         INNER JOIN chefs ON (recipes.chef_id = chefs.id)
         WHERE chefs.id = $1
+        ORDER BY recipes.created_at DESC
       `, [id])
 
     } catch (err) {

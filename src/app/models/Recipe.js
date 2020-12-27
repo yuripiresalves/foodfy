@@ -1,4 +1,3 @@
-const { date } = require('../../lib/utils')
 const db = require('../../config/db')
 const fs = require('fs')
 
@@ -10,7 +9,7 @@ module.exports = {
         SELECT recipes.*, chefs.name AS chef_name 
         FROM recipes
         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-        ORDER BY recipes.id ASC
+        ORDER BY recipes.created_at DESC
       `)
 
     } catch (err) {
@@ -26,9 +25,8 @@ module.exports = {
           ingredients,
           preparation,
           information,
-          created_at,
           chef_id
-        ) VALUES ($1, $2 ,$3, $4, $5, $6)
+        ) VALUES ($1, $2 ,$3, $4, $5)
         RETURNING id
       `
 
@@ -37,7 +35,6 @@ module.exports = {
         data.ingredients,
         data.preparation,
         data.information,
-        date(Date.now()).iso,
         data.chef
       ]
 
@@ -162,7 +159,7 @@ module.exports = {
         FROM recipes
         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
         ${filterQuery}
-        ORDER BY recipes.id ASC
+        ORDER BY recipes.updated_at DESC
         LIMIT $1 OFFSET $2
       `
 
