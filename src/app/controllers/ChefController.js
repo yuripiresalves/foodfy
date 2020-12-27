@@ -1,6 +1,7 @@
 const { findRecipesByChef } = require('../models/Chef')
 const Chef = require('../models/Chef')
 const File = require('../models/File')
+const Recipe = require('../models/Recipe')
 
 module.exports = {
   async index(req, res) {
@@ -9,7 +10,23 @@ module.exports = {
       const results = await Chef.all()
       const chefs = results.rows
 
-      return res.render('admin/chefs/index', { chefs })
+      if (!chefs) return res.render('not-found')
+
+      async function getImage(chefId) {
+        let results = await Chef.files(chefId)
+        const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+
+        return files[0]
+      }
+
+      const chefsPromise = chefs.map(async chef => {
+        chef.image = await getImage(chef.id)
+        return chef
+      })
+
+      const lastAdded = await Promise.all(chefsPromise)
+
+      return res.render('admin/chefs/index', { chefs: lastAdded })
 
     } catch (err) {
       console.error(err)
@@ -46,9 +63,6 @@ module.exports = {
       let result = await Chef.find(id)
       const chef = result.rows[0]
 
-      result = await findRecipesByChef(id)
-      const recipes = result.rows
-
       if (!chef) return res.render('not-found')
 
       result = await Chef.files(chef.id)
@@ -57,7 +71,24 @@ module.exports = {
         src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
       }))
 
-      return res.render('admin/chefs/show', { chef, recipes, files })
+      result = await findRecipesByChef(id)
+      const recipes = result.rows
+
+      async function getImage(recipeId) {
+        let results = await Recipe.files(recipeId)
+        const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+
+        return files[0]
+      }
+
+      const recipesPromise = recipes.map(async recipe => {
+        recipe.image = await getImage(recipe.id)
+        return recipe
+      })
+
+      const lastAdded = await Promise.all(recipesPromise)
+
+      return res.render('admin/chefs/show', { chef, recipes: lastAdded, files })
 
     } catch (err) {
       console.error(err)

@@ -18,7 +18,21 @@ module.exports = {
         let results = await Recipe.all()
         const recipes = results.rows
 
-        return res.render('site/index', { recipes })
+        async function getImage(recipeId) {
+          let results = await Recipe.files(recipeId)
+          const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+
+          return files[0]
+        }
+
+        const recipesPromise = recipes.map(async recipe => {
+          recipe.image = await getImage(recipe.id)
+          return recipe
+        }).filter((recipe, index) => index > 5 ? false : true)
+
+        const lastAdded = await Promise.all(recipesPromise)
+
+        return res.render('site/index', { recipes: lastAdded })
       }
 
     } catch (err) {
@@ -49,12 +63,26 @@ module.exports = {
 
       if (recipes == "") return res.redirect('/not-found')
 
+      async function getImage(recipeId) {
+        let results = await Recipe.files(recipeId)
+        const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+
+        return files[0]
+      }
+
+      const recipesPromise = recipes.map(async recipe => {
+        recipe.image = await getImage(recipe.id)
+        return recipe
+      })
+
+      const lastAdded = await Promise.all(recipesPromise)
+
       const pagination = {
         total: Math.ceil(recipes[0].total / limit),
         page
       }
 
-      return res.render('site/recipes', { recipes, pagination, filter })
+      return res.render('site/recipes', { recipes: lastAdded, pagination, filter })
 
     } catch (err) {
       console.error(err)
@@ -102,12 +130,26 @@ module.exports = {
 
       if (recipes == "") return res.redirect('/not-found')
 
+      async function getImage(recipeId) {
+        let results = await Recipe.files(recipeId)
+        const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+
+        return files[0]
+      }
+
+      const recipesPromise = recipes.map(async recipe => {
+        recipe.image = await getImage(recipe.id)
+        return recipe
+      })
+
+      const lastAdded = await Promise.all(recipesPromise)
+
       const pagination = {
         total: Math.ceil(recipes[0].total / limit),
         page
       }
 
-      return res.render('site/results', { recipes, pagination, filter })
+      return res.render('site/results', { recipes: lastAdded, pagination, filter })
 
     } catch (err) {
       console.error(err)
@@ -119,8 +161,24 @@ module.exports = {
       const results = await Chef.all()
       const chefs = results.rows
 
-      return res.render('site/chefs', { chefs })
-      
+      if (!chefs) return res.render('not-found')
+
+      async function getImage(chefId) {
+        let results = await Chef.files(chefId)
+        const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+
+        return files[0]
+      }
+
+      const chefsPromise = chefs.map(async chef => {
+        chef.image = await getImage(chef.id)
+        return chef
+      })
+
+      const lastAdded = await Promise.all(chefsPromise)
+
+      return res.render('site/chefs', { chefs: lastAdded })
+
     } catch (err) {
       console.error(err)
     }
