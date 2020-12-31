@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/assets/chef.png" type="image/x-icon">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <link rel="stylesheet" href="/styles/admin/layout.css">
+    {% include '../admin/parts/styles.njk' %}
 
     {% block head %}
       <title>Foodfy</title>
@@ -15,13 +13,8 @@
 
   </head>
   <body>
-    <header class="header">
-      <nav class="menu-links">
-        <a class="logo" href="/admin/recipes"><img src="/assets/logo-white.png" alt="Foodfy"></a>
-        <a class="recipes" href="/admin/recipes">RECEITAS</a>
-        <a class="chefs" href="/admin/chefs">CHEFS</a>
-      </nav>
-    </header>
+    
+    {% include '../admin/parts/header.njk' %}
 
     {% block content %}{% endblock content %}
 
