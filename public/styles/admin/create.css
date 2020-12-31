@@ -6,9 +6,29 @@
   margin: 55px auto;
 }
 
-.new-recipe,
-.new-chef h3 {
+.container .header,
+.container .header,
+.container .header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container .header,
+.container .header,
+.container .header h3 {
   font-size: 24px;
+}
+
+.button.delete {
+  background-color: #DC4747;
+  position: absolute;
+  top: 0;
+  right: 160px;
+}
+
+.button.delete:hover {
+  cursor: pointer;
+  background: #f75a5a;
 }
 
 .item {
@@ -72,7 +92,7 @@
 
 .item #photos-upload i {
   color: #777777;
-  font-size: 200%;
+  font-size: 50px;
 }
 
 .item #photos-input {
@@ -124,7 +144,7 @@
   align-items: center;
   justify-content: center;
 
-  font-size: 200%;
+  font-size: 50px;
   cursor: pointer;
 
   transition: opacity .2s;
@@ -171,42 +191,45 @@
   color: #f75a5a;
 }
 
-.new-recipe button,
-.new-chef button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: #6558C3;
-  padding: 9px 20px;
-  border-radius: 4px;
-  border: 0;
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background .2s;
+/* ----- USERS ----- */
+.user-register .buttons {
+  display: flex;
+  gap: 16px;
 }
 
-.new-recipe button:hover,
-.new-chef button:hover {
-  cursor: pointer;
-  background: #7665f5;
+.user-register .button.cancel {
+  background-color: #8A8A8A;
 }
 
-.form-delete button {
-  position: absolute;
-  top: 0;
-  right: 160px;
-  background: #DC4747;
-  padding: 9px 20px;
-  border-radius: 4px;
-  border: 0;
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background .2s;
+.user-register .button.cancel:hover {
+  background-color: #9e9e9e;
 }
 
-.form-delete button:hover {
-  cursor: pointer;
-  background: #f75a5a;
+.user-register .fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px 40px;
+}
+
+.user-register input {
+  max-width: 450px;
+} 
+
+.user-register .item:last-child {
+  margin: 0;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user-register .item:last-child label {
+  margin: 0 8px;
+}
+
+.user-register input[type="checkbox"] {
+  width: 15px;
+}
+
+.user-register input::placeholder {
+  color: #999;
+  font-weight: normal;
 }

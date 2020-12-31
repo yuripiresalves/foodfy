@@ -7,10 +7,19 @@
 
 {% block content %}
 
-  <form class="new-recipe" action="/admin/recipes" method="post" enctype="multipart/form-data">
-    <h3>Criando receita</h3>
+  <section class="new-recipe container form">
+    <form action="/admin/recipes" method="POST" enctype="multipart/form-data">
 
-    {% include 'admin/recipes/fields.njk'%}
-  </form>
+      <div class="header">
+        <h3>Criando receita</h3>
+        <button class="button" type="submit">Salvar receita</button>
+      </div>
+      
+      <div class="fields">
+        {% include 'admin/recipes/fields.njk'%}
+      </div>
+    </form>
+
+  </section>
 
 {% endblock content %}

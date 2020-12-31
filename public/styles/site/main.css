@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 :root {
-    font-size: 62.5%;
+    /* font-size: 62.5%; */
     font-family: 'Roboto', sans-serif;
     --color-text: #111111
 }
@@ -19,7 +19,7 @@ body {
 }
 
 #container {
-    max-width: 94rem;
+    max-width: 940px;
     margin: 0 auto;
 }
 
@@ -28,7 +28,7 @@ header {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     justify-content: space-between;
-    padding: 3rem 0;
+    padding: 30px 0;
 }
 
 header .menu-links {
@@ -37,12 +37,12 @@ header .menu-links {
 }
 
 header .menu-links .menu-img-logo a {
-    margin-right: 12rem;
+    margin-right: 120px;
 
 }
 
 .menu-links a {
-    font-size: 1.6rem;
+    font-size: 16px;
     color: var(--color-text);
     text-decoration: none;
 }
@@ -62,7 +62,7 @@ header .menu-links .menu-img-logo a {
 }
 
 header a+a {
-    margin-left: 3rem;
+    margin-left: 30px;
 }
 
 footer {
@@ -72,8 +72,8 @@ footer {
 }
 
 footer p {
-    font-size: 1.4rem;
+    font-size: 14px;
     text-align: center;
     color: #999999;
-    padding: 2.3rem 0;
+    padding: 23px 0;
 }

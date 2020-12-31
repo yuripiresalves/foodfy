@@ -6,10 +6,20 @@
 
 {% block content %}
 
-  <form class="new-recipe" action="/admin/chefs" method="post" enctype="multipart/form-data">
-    <h3>Criando chef</h3>
+  <section class="new-chef container form">
+    <form action="/admin/chefs" method="POST" enctype="multipart/form-data">
 
-    {% include 'admin/chefs/fields.njk'%}
-  </form>
+      <div class="header">
+        <h3>Criando chef</h3>
+        <button class="button" type="submit">Salvar chef</button>
+      </div>
+
+      <div class="fields">
+        {% include 'admin/chefs/fields.njk'%}
+      </div>
+
+    </form>
+
+  </section>
 
 {% endblock content %}

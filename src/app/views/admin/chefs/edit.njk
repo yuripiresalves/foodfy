@@ -5,25 +5,30 @@
 {% endblock head %}
 
 {% block content %}
-  <div class="container">
-    <form class="new-recipe" action="/admin/chefs?_method=PUT" method="post" enctype="multipart/form-data">
-      <h3>Editando chef</h3>
+  <section class="container form">
+    <form action="/admin/chefs?_method=PUT" method="post" enctype="multipart/form-data">
 
-      {% include 'admin/chefs/fields.njk'%}
+      <div class="header">
+        <h3>Editando chef</h3>
+        <button class="button">Editar chef</button>
+      </div>
 
+      <div class="fields">
+        {% include 'admin/chefs/fields.njk'%}
+        <input type="hidden" name="id" value="{{ chef.id }}">
+      </div>
+
+    </form>
+
+    <form id="form-delete" action="/admin/chefs?_method=DELETE" method="post">
+      <button class="button delete" type="submit">Deletar</button>
       <input type="hidden" name="id" value="{{ chef.id }}">
     </form>
 
-    <form class="form-delete" action="/admin/chefs?_method=DELETE" method="post">
-      <button type="submit">Deletar</button>
-
-      <input type="hidden" name="id" value="{{ chef.id }}">
-    </form>
-
-  </div>
+  </section>
 
   <script>
-    const formDelete = document.querySelector('.form-delete')
+    const formDelete = document.querySelector('#form-delete')
     formDelete.addEventListener('submit', (event) => {
       const confirmation = confirm('Gostaria mesmo de deletar?')
       if (!confirmation) {

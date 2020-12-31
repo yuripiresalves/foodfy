@@ -5,6 +5,7 @@
     id="name"
     name="name" 
     value="{{ user.name }}" 
+    placeholder="Digite o nome completo"
     required="required"
   />
 </div>
@@ -16,17 +17,17 @@
     id="email"
     name="email" 
     value="{{ user.email }}" 
+    placeholder="Digite o e-mail"
     required="required"
   />
 </div>
 
 <div class="item">
   <input 
-    type="radio" 
+    type="checkbox" 
     id="is_admin"
-    name="is_admin" 
-    value="{{ user.is_admin }}" 
-    required="required"
+    name="admin" 
+    value="true" 
   />
-  <label for="is_admin">Administrador</label>
+  <label for="admin">Administrador</label>
 </div>
