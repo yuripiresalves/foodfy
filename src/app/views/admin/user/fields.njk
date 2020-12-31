@@ -1,0 +1,32 @@
+<div class="item">
+  <label for="name">Nome</label>
+  <input 
+    type="text" 
+    id="name"
+    name="name" 
+    value="{{ user.name }}" 
+    required="required"
+  />
+</div>
+
+<div class="item">
+  <label for="email">E-mail</label>
+  <input 
+    type="email" 
+    id="email"
+    name="email" 
+    value="{{ user.email }}" 
+    required="required"
+  />
+</div>
+
+<div class="item">
+  <input 
+    type="radio" 
+    id="is_admin"
+    name="is_admin" 
+    value="{{ user.is_admin }}" 
+    required="required"
+  />
+  <label for="is_admin">Administrador</label>
+</div>

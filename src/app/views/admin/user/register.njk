@@ -1,0 +1,26 @@
+{% extends 'admin/layout.njk' %}
+
+{% block head %}
+  <link rel="stylesheet" href="/styles/admin/create.css">
+  <title>Novo usuário | Foodfy</title>
+{% endblock head %}
+
+{% block content %}
+
+  <section class="user-register container form">
+    <form action="/admin/users" method="POST">
+
+      <div class="header">
+        <h3>Criar Usuário</h3>
+        <button class="button" type="submit">Salvar</button>
+        <button class="button" type="submit">Cancelar</button>
+      </div>
+
+      <div class="fields">
+        {% include 'admin/user/fields.njk'%}
+      </div>
+
+    </form>
+  </section>
+
+{% endblock content %}
