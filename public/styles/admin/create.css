@@ -233,3 +233,12 @@
   color: #999;
   font-weight: normal;
 }
+
+/* validate errors */
+.item .error {
+  background-color: #e74c3c;
+  padding: 4px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: white;
+}
