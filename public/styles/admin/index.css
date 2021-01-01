@@ -50,7 +50,7 @@
   cursor: pointer;
 }
 
-/* ------CHEF ----- */
+/* ------ CHEF ------ */
 .container__cards.chef {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -78,4 +78,27 @@
   border-radius: 50%;
   margin-right: 20px;
   object-fit: cover;
+}
+
+/* ------ USER ------ */
+.container__cards.user {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px 220px;
+  margin-top: 64px;
+}
+
+.card__user .card__information--name {
+  font-size: 18px;
+}
+
+.card__user .card__information--email {
+  font-size: 14px;
+  color: #777;
+  margin: 4px 0 16px;
+}
+
+.card__information--view.remove {
+  color: #F55A5A;
+  margin-left: 16px;
 }
