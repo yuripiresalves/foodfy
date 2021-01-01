@@ -1,0 +1,40 @@
+{% extends 'admin/layout.njk' %}
+
+{% block head %}
+  <title>Atualizar usuário | Foodfy</title>
+{% endblock head %}
+
+{% block content %}
+  <section class="user-register container form">
+    <form action="/admin/users/edit?_method=PUT" method="post">
+
+      <div class="header">
+        <h3>Atualizar Usuário</h3>
+        <button class="button" type="submit">Salvar</button>
+      </div>
+
+      <div class="fields">
+        {% include 'admin/user/fields.njk'%}
+        <input type="hidden" name="id" value="{{ user.id }}">
+      </div>
+
+    </form>
+
+    <form id="form-delete" action="/admin/users/edit?_method=DELETE" method="post">
+      <button class="button delete" type="submit">Deletar</button>
+      <input type="hidden" name="id" value="{{ user.id }}">
+    </form>
+
+  </section>
+
+  <script>
+    const formDelete = document.querySelector('#form-delete')
+    formDelete.addEventListener('submit', (event) => {
+      const confirmation = confirm('Gostaria mesmo de deletar?')
+      if (!confirmation) {
+        event.preventDefault()
+      }
+    })
+  </script>
+
+{% endblock content %}
