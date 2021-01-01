@@ -4,6 +4,35 @@ const mailer = require('../../lib/mailer')
 const { hash } = require('bcryptjs')
 
 module.exports = {
+  async all() {
+    try {
+      return db.query(`
+        SELECT * FROM users
+        ORDER BY name ASC
+      `)
+    } catch (err) {
+      console.error(err)
+    }
+  },
+  async findOne(filters) {
+    let query = "SELECT * FROM users"
+
+    Object.keys(filters).map(key => {
+      //WHERE | OR
+      query = `
+        ${query}
+        ${key}
+      `
+
+      Object.keys(filters[key]).map(field => {
+        query = `${query} ${field} = '${filters[key][field]}'`
+      })
+    })
+
+    const results = await db.query(query)
+
+    return results.rows[0]
+  },
   async create(data) {
     try {
       const query = `
@@ -43,5 +72,28 @@ module.exports = {
     } catch (err) {
       console.error(err)
     }
+  },
+  async update(id, fields) {
+    let query = "UPDATE users SET"
+
+    Object.keys(fields).map((key, index, array) => {
+      if((index + 1) < array.length) {
+        query = `
+          ${query}
+          ${key} = '${fields[key]}',
+        `
+
+      } else {
+        // last iteration
+        query = `
+          ${query}
+          ${key} = '${fields[key]}'
+          WHERE id = ${id}
+        `
+      }
+    })
+
+    await db.query(query)
+    return 
   }
 }
