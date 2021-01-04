@@ -49,7 +49,9 @@ module.exports = {
         return res.send("Please, send at least one image!")
       }
 
-      let results = await Recipe.create(req.body)
+      const { userId: id} = req.session
+
+      let results = await Recipe.create(id, req.body)
       const recipeId = results.rows[0].id
 
       const filesPromise = req.files.map(file => File.createRecipeFile({ ...file, recipe_id: recipeId }))
@@ -100,6 +102,12 @@ module.exports = {
         ...file,
         src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
       }))
+
+      if (recipe.user_id !== req.session.userId) return res.render(`admin/recipes/show`, {
+        recipe,
+        files,
+        error: "Você não pode editar esta receita!"
+      })
 
       return res.render('admin/recipes/edit', { recipe, chefOptions, files })
 
