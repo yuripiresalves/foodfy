@@ -13,10 +13,16 @@
 
   </head>
   <body>
-    
+
     {% include '../admin/parts/messages.njk' %}
 
-    {% include '../admin/parts/header.njk' %}
+    {% if session.userId %}
+      {% include '../admin/parts/header.njk' %}
+    {% else %}
+      <div class="header-logo">
+        <img src="/assets/logo.png" alt="">
+      </div>
+    {% endif %}
 
     {% block content %}{% endblock content %}
 
