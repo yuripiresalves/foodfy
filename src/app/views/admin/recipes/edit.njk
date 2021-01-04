@@ -8,7 +8,10 @@
 {% block content %}
   <div class="container">
     <form class="new-recipe" action="/admin/recipes?_method=PUT" method="post" enctype="multipart/form-data">
-      <h3>Editando receita</h3>
+      <div class="header">
+        <h3>Editando receita</h3>
+        <button class="button">Salvar</button>
+      </div>
 
       {% include 'admin/recipes/fields.njk'%}
 
