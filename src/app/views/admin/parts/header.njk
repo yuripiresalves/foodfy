@@ -4,5 +4,12 @@
     <a class="recipes" href="/admin/recipes">RECEITAS</a>
     <a class="chefs" href="/admin/chefs">CHEFS</a>
     <a class="users" href="/admin/users">USUÁRIOS</a>
+    {% if session.userId %}
+      <div class="logout">
+        <form action="/admin/logout" method="POST">
+          <button>SAIR</button>
+        </form>
+      </div>
+    {% endif %}
   </nav>
 </header>
