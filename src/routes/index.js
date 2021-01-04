@@ -4,9 +4,7 @@ const multer = require('../app/middlewares/multer')
 
 const SiteController = require('../app/controllers/SiteController')
 
-const recipes = require('./recipes')
-const chefs = require('./chefs')
-const users = require('./users')
+const adminRoutes = require('./admin')
 
 // Site
 routes.get('/', SiteController.index)
@@ -17,13 +15,7 @@ routes.get("/results", SiteController.results)
 routes.get("/chefs", SiteController.chefs)
 
 // Recipes
-routes.use('/admin/recipes', recipes)
-
-// Chefs
-routes.use('/admin/chefs', chefs)
-
-// Users
-routes.use('/admin/users', users)
+routes.use('/admin', adminRoutes)
 
 
 routes.use((req, res) => {  
