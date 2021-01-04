@@ -23,8 +23,10 @@ module.exports = {
   async post(req, res) {
     try {
       const userId = await User.create(req.body)
+      const isAdmin = await User.findOne({ where: { is_admin }})
 
       req.session.userId = userId
+      req.session.isAdmin = isAdmin
 
       return res.redirect('/admin/users/register')
 
