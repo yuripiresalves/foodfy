@@ -24,6 +24,11 @@
   /* justify-content: center; */
 }
 
+.header-logo {
+  text-align: center;
+  padding: 35px 0;
+}
+
 .menu-links {
   width: 940px;
   margin: 0 auto;
@@ -51,4 +56,24 @@
 
 .menu-links a.active {
   color: #fff;
+}
+
+.logout {
+  width: 940px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logout button {
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  transition: color .2s;
+}
+
+.logout button:hover {
+  color: #999999;
+  cursor: pointer;
 }
