@@ -1,0 +1,30 @@
+{% extends 'admin/layout.njk' %}
+
+{% block head %}
+  <link rel="stylesheet" href="/styles/admin/create.css">
+  <title>Iniciar Sessão | Foodfy</title>
+{% endblock head %}
+
+{% block content %}
+
+  <section class="login container form">
+    <form action="/admin/login" method="POST">
+
+      <div class="header">
+        <h3>Iniciar Sessão</h3>
+      </div>
+
+      <div class="fields">
+        {% include 'admin/session/fields.njk'%}
+      </div>
+
+      <div class="footer">
+        <a href="/users/forgot-password">Perdeu a senha?</a>
+        <button class="button" type="submit">Acessar</button>
+      </div>
+      
+
+    </form>
+  </section>
+
+{% endblock content %}

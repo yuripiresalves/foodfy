@@ -1,0 +1,35 @@
+section.login.container {
+  max-width: 500px;
+}
+
+section.login .header {
+  display: block;
+}
+
+section.login .header h3 {
+  text-align: center;
+}
+
+section.login input::placeholder {
+  font-weight: normal;
+}
+
+section.login .footer {
+  margin-top: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+section.login .footer a {
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #969696;
+
+  transition: color .2s;
+}
+
+section.login .footer a:hover {
+  color: #111111;
+}
