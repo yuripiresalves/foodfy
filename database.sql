@@ -67,7 +67,7 @@ BEFORE UPDATE ON recipes
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
--- auto updated_at recipes
+-- auto updated_at users
 CREATE TRIGGER set_timestamp
 BEFORE UPDATE ON users 
 FOR EACH ROW
