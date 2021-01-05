@@ -18,7 +18,9 @@ routes.post('/logout', SessionController.logout)
 
 // password
 routes.get('/forgot-password', SessionController.forgotForm)
+routes.get('/password-reset', SessionController.resetForm)
 routes.post('/forgot-password', SessionValidator.forgot, SessionController.forgot)
+routes.post('/password-reset', SessionValidator.reset, SessionController.reset)
 
 // Rotas que o administrador irá acessar para gerenciar usuários
 routes.get('/users', onlyAdmin, UserController.list) //Mostrar a lista de usuários cadastrados
