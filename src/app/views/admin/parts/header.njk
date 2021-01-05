@@ -1,15 +1,27 @@
-<header class="header-layout">
-  <nav class="menu-links">
-    <a class="logo" href="/admin/recipes"><img src="/assets/logo-white.png" alt="Foodfy"></a>
-    <a class="recipes" href="/admin/recipes">RECEITAS</a>
-    <a class="chefs" href="/admin/chefs">CHEFS</a>
-    <a class="users" href="/admin/users">USUÁRIOS</a>
-    {% if session.userId %}
+{% if session.userId %}
+
+  <header class="header-layout">
+    <nav class="menu-links">
+      <a class="logo" href="/admin/recipes"><img src="/assets/logo-white.png" alt="Foodfy"></a>
+      <a class="recipes" href="/admin/recipes">RECEITAS</a>
+      <a class="chefs" href="/admin/chefs">CHEFS</a>
+      {% if session.isAdmin %}
+        <a class="users" href="/admin/users">USUÁRIOS</a>
+      {% else %}
+        <a class="users" href="/admin/profile">USUÁRIO</a>
+      {% endif %}
       <div class="logout">
         <form action="/admin/logout" method="POST">
           <button>SAIR</button>
         </form>
       </div>
-    {% endif %}
-  </nav>
-</header>
+    </nav>
+  </header>
+
+{% else %}
+
+  <header class="header-logo">
+    <img src="/assets/logo.png" alt="">
+  </header>
+  
+{% endif %}
