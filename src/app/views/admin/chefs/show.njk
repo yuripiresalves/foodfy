@@ -8,10 +8,15 @@
 {% block content %}
 
   <div class="container">
-    <h2 class="container__name">
-      Chef:
-      {{ chef.name }}
-    </h2>
+    <div class="header">
+      <h2 class="container__name">
+        Chef:
+        {{ chef.name }}
+      </h2>
+      {% if session.isAdmin %}
+        <a class="button" href="{{ chef.id }}/edit">Editar chef</a>
+      {% endif %}
+    </div>
 
     <main class="container__chef">
       <img class="container__chef--image" src="{{ files[0].src }}" alt="{{ chef.name }}">
@@ -67,7 +72,6 @@
 
     </main>
 
-    <a class="button" href="{{ chef.id }}/edit">Editar chef</a>
   </div>
 
 {% endblock content %}

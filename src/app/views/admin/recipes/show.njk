@@ -9,10 +9,15 @@
 {% block content %}
 
   <div class="container">
-    <h2 class="container__title">
-      Receita:
-      {{ recipe.title }}
-    </h2>
+    <div class="header">
+      <h2 class="container__title">
+        Receita:
+        {{ recipe.title }}
+      </h2>
+      {% if recipe.user_id === session.userId %}
+        <a class="button" href="{{ recipe.id }}/edit">Editar receita</a>
+      {% endif %}
+    </div>
 
     <main class="container__recipe">
 
@@ -86,7 +91,6 @@
 
     </main>
 
-    <a class="button" href="{{ recipe.id }}/edit">Editar receita</a>
   </div>
 
 {% endblock content %}
