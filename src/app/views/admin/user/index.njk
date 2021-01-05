@@ -31,7 +31,10 @@
               {% else %}
                 <a href="/admin/users/{{user.id}}/edit" class="card__information--view">Editar</a>
               {% endif %}
-              <a href="/admin/users/edit" class="card__information--view remove">Remover</a>
+              <form id="form-delete" action="/admin/users?_method=DELETE" method="post">
+                <button class="card__information--view remove" type="submit">Remover</button>
+                <input type="hidden" name="id" value="{{ user.id }}">
+              </form>
             </div>
           </div>
         </div>
@@ -39,5 +42,15 @@
 
     </section>
   </div>
+
+  <script>
+    const formDelete = document.querySelector('#form-delete')
+    formDelete.addEventListener('submit', (event) => {
+      const confirmation = confirm('Gostaria mesmo de deletar?')
+      if (!confirmation) {
+        event.preventDefault()
+      }
+    })
+  </script>
 
 {% endblock content %}

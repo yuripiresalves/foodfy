@@ -98,7 +98,13 @@
   margin: 4px 0 16px;
 }
 
+.buttons #form-delete {
+  display: inline;
+}
+
 .card__information--view.remove {
   color: #F55A5A;
+  background: none;
+  border: none;
   margin-left: 16px;
 }

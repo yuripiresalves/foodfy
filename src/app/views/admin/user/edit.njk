@@ -20,7 +20,7 @@
 
     </form>
 
-    <form id="form-delete" action="/admin/users/edit?_method=DELETE" method="post">
+    <form id="form-delete" action="/admin/users?_method=DELETE" method="post">
       <button class="button delete" type="submit">Deletar</button>
       <input type="hidden" name="id" value="{{ user.id }}">
     </form>

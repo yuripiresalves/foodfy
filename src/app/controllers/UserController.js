@@ -23,6 +23,8 @@ module.exports = {
   async post(req, res) {
     try {
       const userId = await User.create(req.body)
+
+      const is_admin = req.body.is_admin
       const isAdmin = await User.findOne({ where: { is_admin }})
 
       req.session.userId = userId
@@ -53,6 +55,21 @@ module.exports = {
       console.error(err)
       return res.render('admin/user/edit', {
         error: "Algum erro aconteceu!"
+      })
+    }
+  },
+  async delete(req, res) {
+    try {
+      await User.delete(req.body.id)
+
+      return res.render('admin/user/register', {
+        success: "Conta deletada com sucesso!"
+      })
+    } catch (err) {
+      console.error(err)
+      return res.render('admin/user/edit', {
+        user: req.body,
+        error: "Erro ao tentar deletar a conta!"
       })
     }
   }
