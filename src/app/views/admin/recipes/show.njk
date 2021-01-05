@@ -14,7 +14,7 @@
         Receita:
         {{ recipe.title }}
       </h2>
-      {% if recipe.user_id === session.userId %}
+      {% if recipe.user_id === session.userId or session.isAdmin %}
         <a class="button" href="{{ recipe.id }}/edit">Editar receita</a>
       {% endif %}
     </div>

@@ -103,7 +103,7 @@ module.exports = {
         src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
       }))
 
-      if (recipe.user_id !== req.session.userId) return res.render(`admin/recipes/show`, {
+      if (recipe.user_id !== req.session.userId && !req.session.isAdmin) return res.render(`admin/recipes/show`, {
         recipe,
         files,
         error: "Você não pode editar esta receita!"
