@@ -16,7 +16,7 @@ module.exports = {
       console.error(err)
     }
   },
-  create(id, data) {
+  create(data) {
 
     try {
       const query = `
@@ -33,7 +33,7 @@ module.exports = {
 
       const values = [
         data.chef,
-        id,
+        data.user_id,
         data.title,
         data.ingredients,
         data.preparation,

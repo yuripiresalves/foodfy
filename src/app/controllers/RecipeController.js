@@ -49,9 +49,9 @@ module.exports = {
         return res.send("Please, send at least one image!")
       }
 
-      const { userId: id} = req.session
-
-      let results = await Recipe.create(id, req.body)
+      req.body.user_id = req.session.userId
+      
+      let results = await Recipe.create(req.body)
       const recipeId = results.rows[0].id
 
       const filesPromise = req.files.map(file => File.createRecipeFile({ ...file, recipe_id: recipeId }))
