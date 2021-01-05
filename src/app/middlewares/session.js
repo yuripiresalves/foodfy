@@ -13,8 +13,14 @@ function onlyUser(req, res, next) {
 }
 
 function onlyAdmin(req, res, next) {
-  if (!req.session.isAdmin)
-    return res.redirect('/admin/profile')
+  if (!req.session.isAdmin) {
+    if (!req.session.userId) {
+      return res.redirect('/admin/login')
+    }
+    else {
+      return res.redirect('/admin/profile')
+    }
+  }
 
   next()
 }
