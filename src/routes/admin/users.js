@@ -16,6 +16,10 @@ routes.get('/login', isLoggedRedirectToUsers, SessionController.loginForm)
 routes.post('/login', SessionValidator.login, SessionController.login)
 routes.post('/logout', SessionController.logout)
 
+// password
+routes.get('/forgot-password', SessionController.forgotForm)
+routes.post('/forgot-password', SessionValidator.forgot, SessionController.forgot)
+
 // Rotas que o administrador irá acessar para gerenciar usuários
 routes.get('/users', onlyAdmin, UserController.list) //Mostrar a lista de usuários cadastrados
 routes.get('/users/register', onlyAdmin, UserController.registerForm) //
