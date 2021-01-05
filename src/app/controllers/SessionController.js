@@ -3,14 +3,26 @@ module.exports = {
     return res.render('admin/session/login')
   },
   login(req, res) {
-    req.session.userId = req.user.id
-    req.session.isAdmin = req.user.is_admin
 
-    return res.redirect('/admin/profile')
+    try {
+      req.session.userId = req.user.id
+      req.session.isAdmin = req.user.is_admin
+
+      return res.redirect('/admin/users')
+      
+    } catch (err) {
+      console.error(err)
+    }
   },
   logout(req, res) {
-    req.session.destroy()
 
-    return res.redirect('/admin/login')
+    try {
+      req.session.destroy()
+  
+      return res.redirect('/admin/login')
+      
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
