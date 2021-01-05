@@ -206,31 +206,40 @@
   background-color: #9e9e9e;
 }
 
-.user-register .fields {
+.user-register .fields,
+.user-edit .fields,
+.profile .fields {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px 40px;
 }
 
-.user-register input {
+.user-register input,
+.user-edit input,
+.profile input {
   max-width: 450px;
+  font-weight: normal;
 } 
 
-.user-register .item:last-child {
+.user-register .item:last-child,
+.user-edit .item:nth-child(3)  {
   margin: 0;
   flex-direction: row;
   align-items: center;
 }
 
-.user-register .item:last-child label {
+.user-register .item:last-child label,
+.user-edit .item:nth-child(3) label {
   margin: 0 8px;
 }
 
-.user-register input[type="checkbox"] {
+.user-register input[type="checkbox"],
+.user-edit input[type="checkbox"] {
   width: 15px;
 }
 
-.user-register input::placeholder {
+.user-register input::placeholder,
+.profile input::placeholder {
   color: #999;
   font-weight: normal;
 }
