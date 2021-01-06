@@ -7,8 +7,11 @@
 {% block content %}
 
   <div class="container">
-    <header class="container__title">
-      <h1>Gerenciar chefs</h1>
+    <header class="header container__title">
+      <h3>Gerenciar chefs</h3>
+      {% if session.isAdmin %}
+        <a class="button" href="/admin/chefs/create">Novo chef</a>
+      {% endif %}
     </header>
 
     <section class="container__cards chef">
