@@ -31,10 +31,12 @@
               {% else %}
                 <a href="/admin/users/{{user.id}}/edit" class="card__information--view">Editar</a>
               {% endif %}
-              <form id="form-delete" action="/admin/users?_method=DELETE" method="post">
-                <button class="card__information--view remove" type="submit">Remover</button>
-                <input type="hidden" name="id" value="{{ user.id }}">
-              </form>
+              {% if not user.is_admin %}
+                <form id="form-delete" action="/admin/users?_method=DELETE" method="post">
+                  <button class="card__information--view remove" type="submit">Remover</button>
+                  <input type="hidden" name="id" value="{{ user.id }}">
+                </form>
+              {% endif %}
             </div>
           </div>
         </div>
