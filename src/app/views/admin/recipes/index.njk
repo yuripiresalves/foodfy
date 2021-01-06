@@ -8,28 +8,35 @@
 {% block content %}
 
   <div class="container">
-    <header class="container__title">
-      <h1>Gerenciar receitas</h1>
+    <header class="header container__title">
+      <h3>Gerenciar receitas</h3>
+      <a class="button" href="/admin/recipes/create">Nova receita</a>
     </header>
 
     <section class="container__cards">
 
       {% for recipe in recipes %}
-        <div class="card" id="{{ recipe.id }}">
-          <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+        {% if recipe.user_id === session.userId %}
+          <div class="card" id="{{ recipe.id }}">
+            <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
 
-          <div class="card__information">
-            <h2 class="card__information--title">
-              {{ recipe.title }}
-            </h2>
+            <div class="card__information">
+              <h2 class="card__information--title">
+                {{ recipe.title }}
+              </h2>
 
-            <p class="card__information--author">
-              por {{ recipe.chef_name }}
-            </p>
+              <p class="card__information--author">
+                por {{ recipe.chef_name }}
+              </p>
 
-            <a href="/admin/recipes/{{ recipe.id }}" class="card__information--view">Visualizar</a>
+              <a href="/admin/recipes/{{ recipe.id }}" class="card__information--view">Visualizar</a>
+            </div>
           </div>
-        </div>
+        {# {% else %}
+          <p style="font-size: 20px; color: #777; margin-top: 60px;">
+            Você não possui receitas cadastradas
+          </p> #}
+        {% endif %}
       {% endfor %}
 
     </section>

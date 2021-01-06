@@ -9,6 +9,10 @@
   font-weight: bold;
 }
 
+.header.container__title {
+  margin-bottom: 30px;
+}
+
 .gallery {
   width: 100%;
   height: 330px;
