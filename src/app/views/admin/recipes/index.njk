@@ -16,7 +16,7 @@
     <section class="container__cards">
 
       {% for recipe in recipes %}
-        {% if recipe.user_id === session.userId %}
+        {% if recipe.user_id === session.userId or session.isAdmin %}
           <div class="card" id="{{ recipe.id }}">
             <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
 
