@@ -88,7 +88,8 @@ section h1 {
 
 .card-image img {
     width: 100%;
-    border-radius: 150px;
+    height: 140px;
+    border-radius: 15px;
 }
 
 .card-info h2 {
