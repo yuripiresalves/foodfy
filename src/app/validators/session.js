@@ -1,7 +1,25 @@
 const User = require('../models/User')
 const { compare } = require('bcryptjs')
 
+function checkAllFields(body) {
+  const keys = Object.keys(body)
+
+  for (key of keys) {
+    if (body[key] == "") {
+      return {
+        user: body,
+        error: "Por favor, preencha todos os campos!"
+      }
+    }
+  }
+}
+
 async function login(req, res, next) {
+  const fillAllFields = checkAllFields(req.body)
+  if (fillAllFields) {
+    return res.render('admin/session/login', fillAllFields)
+  }
+
   const { email, password } = req.body
 
   const user = await User.findOne({ where: { email } })
@@ -25,6 +43,11 @@ async function login(req, res, next) {
 }
 
 async function forgot(req, res, next) {
+  const fillAllFields = checkAllFields(req.body)
+  if (fillAllFields) {
+    return res.render('admin/session/forgot-password', fillAllFields)
+  }
+
   const { email } = req.body
 
   try {
@@ -46,6 +69,11 @@ async function forgot(req, res, next) {
 }
 
 async function reset(req, res, next) {
+  const fillAllFields = checkAllFields(req.body)
+  if (fillAllFields) {
+    return res.render('admin/session/password-reset', fillAllFields)
+  }
+
   const { email, password, passwordRepeat, token } = req.body
 
   const user = await User.findOne({ where: { email } })
