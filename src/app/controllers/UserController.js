@@ -24,11 +24,16 @@ module.exports = {
     try {
       const userId = await User.create(req.body)
 
-      const is_admin = req.body.is_admin
-      const isAdmin = await User.findOne({ where: { is_admin }})
+      // const is_admin = req.body.is_admin
 
-      req.session.userId = userId
-      req.session.isAdmin = isAdmin
+      // if (req.body.is_admin === true) {
+      //   let isAdmin = await User.findOne({ where: { is_admin }})
+      // } else {
+      //   isAdmin = false
+      // }
+
+      // req.session.userId = userId
+      // req.session.isAdmin = isAdmin
 
       return res.redirect('/admin/users/register')
 
@@ -39,11 +44,16 @@ module.exports = {
   async put(req, res) {
     try {
       const { user } = req
-      let { name, email } = req.body
+      let { name, email, is_admin } = req.body
+
+      if (is_admin !== true) {
+        is_admin = false
+      }
 
       await User.update(user.id, {
         name,
-        email
+        email,
+        is_admin
       })
 
       return res.render('admin/user/edit', {
