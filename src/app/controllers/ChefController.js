@@ -48,8 +48,20 @@ module.exports = {
       const fileId = results.rows[0].id
 
       results = await Chef.create(req.body, fileId)
+      const chef = results.rows[0]
 
-      return res.redirect(`chefs`)
+      results = await Chef.files(chef.id)
+      let files = results.rows
+      files = files.map(file => ({
+        ...file,
+        src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+      }))
+
+      return res.render('admin/chefs/edit', {
+        chef: req.body,
+        files,
+        success: "Chef criado com sucesso!"
+      })
 
     } catch (err) {
       console.error(err)
@@ -118,15 +130,17 @@ module.exports = {
   async put(req, res) {
 
     try {
-      let results = await Chef.find(req.params.id)
-      let id = results.rows[0]
+      let results = await Chef.find(req.body.id)
+      const chef = results.rows[0]
 
       if (req.files.length != 0) {
         const newFilesPromise = req.files.map(file =>
           File.create({ ...file }))
 
         results = await newFilesPromise[0]
-        id = results.rows[0].id
+        let id = results.rows[0].id
+      } else {
+        id = chef.file_id
       }
 
       await Chef.update(req.body, id)
@@ -141,10 +155,27 @@ module.exports = {
         await Promise.all(removedFilesPromise)
 
       }
-      return res.redirect(`chefs/${req.body.id}`)
+
+      results = await Chef.files(chef.id)
+      let files = results.rows
+      files = files.map(file => ({
+        ...file,
+        src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+      }))
+
+      return res.render('admin/chefs/edit', {
+        chef: req.body,
+        files,
+        success: "Chef atualizado com sucesso!"
+      })
 
     } catch (err) {
       console.error(err)
+      return res.render('admin/chefs/edit', {
+        chef: req.body,
+        files,
+        error: "Algum erro aconteceu!"
+      })
     }
   },
   async delete(req, res) {
@@ -152,18 +183,50 @@ module.exports = {
     try {
       const id = req.body.id
 
-      let result = await Chef.find(id)
+      let results = await Chef.find(id)
+      const chef = results.rows[0]
 
-      result = await Chef.findRecipesByChef(id)
-      const recipes = result.rows
+      results = await Chef.findRecipesByChef(id)
+      const recipes = results.rows
+
+      results = await Chef.files(chef.id)
+      let files = results.rows
+      files = files.map(file => ({
+        ...file,
+        src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+      }))
 
       if (recipes.length == 0) {
         result = await Chef.delete(id)
 
-        return res.redirect('chefs')
+        async function getImage(chefId) {
+          let results = await Chef.files(chefId)
+          const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+  
+          return files[0]
+        }
+
+        results = await Chef.all()
+        let chefs = results.rows
+  
+        const chefsPromise = chefs.map(async chef => {
+          chef.image = await getImage(chef.id)
+          return chef
+        })
+  
+        chefs = await Promise.all(chefsPromise)
+
+        return res.render('admin/chefs/index', {
+          chefs,
+          success: "Chef deletado com sucesso!"
+        })
       }
       else
-        return res.send("Não é possível deletar este chef pois ele possui pelo menos uma receita!")
+        return res.render('admin/chefs/edit', {
+          chef,
+          files,
+          error: "Não é possível deletar este chef pois ele possui pelo menos uma receita!"
+        })
     }
     catch (err) {
       console.error(err)
