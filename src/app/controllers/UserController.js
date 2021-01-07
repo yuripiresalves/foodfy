@@ -24,7 +24,10 @@ module.exports = {
     try {
       await User.create(req.body)
 
-      return res.redirect('/admin/users')
+      return res.render('admin/user/edit', {
+        user: req.body,
+        success: "Usuário cadastrado com sucesso!"
+      })
 
     } catch (err) {
       console.error(err)
@@ -61,7 +64,11 @@ module.exports = {
     try {
       await User.delete(req.body.id)
 
-      return res.render('admin/user/register', {
+      let results = await User.all()
+      const users = results.rows
+
+      return res.render('admin/user/index', {
+        users,
         success: "Conta deletada com sucesso!"
       })
     } catch (err) {
