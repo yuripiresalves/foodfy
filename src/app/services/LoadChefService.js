@@ -24,12 +24,6 @@ const LoadService = {
       avatar: chef.avatar.replace('public', '')
     }
   },
-  formatRecipe(recipe) {
-    return {
-      ...recipe,
-      // image: recipe.image.replace('public', '')
-    }
-  },
   async chef() {
     try {
       const chef = await Chef.find(this.filter)

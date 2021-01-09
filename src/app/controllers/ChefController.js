@@ -8,7 +8,7 @@ const LoadChefService = require('../services/LoadChefService')
 module.exports = {
   async index(req, res) {
     try {
-      const chefs = await Chef.findAll()
+      const chefs = await LoadChefService.load('chefs')
 
       if (!chefs) return res.render('not-found')
 
