@@ -23,15 +23,15 @@
 
       <div class="gallery">
         <div class="highlight">
-          {% if not files[0] %}
+          {% if not recipe.files[0] %}
             <img src="http://placehold.it/940x280?text=RECEITA SEM IMAGEM">
           {% else %}
-            <img class="container__recipe--image" src="{{files[0].src}}" alt="{{files[0].name}}">
+            <img class="container__recipe--image" src="{{recipe.files[0].src}}" alt="{{recipe.files[0].name}}">
           {% endif %}
         </div>
 
         <div class="gallery-preview">
-          {% for image in files %}
+          {% for image in recipe.files %}
             <img 
               src="{{image.src}}" 
               alt="{{image.name}}" 
