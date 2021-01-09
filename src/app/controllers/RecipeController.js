@@ -143,7 +143,7 @@ module.exports = {
         removed_files.splice(lastIndex, 1)
 
         const removedFilesPromise = removed_files.map(async id => {
-          RecipeFile.delete({ file_id: id })
+          RecipeFile.delete({ id })
 
           const file = await File.findOne({ where: { id } })
           File.delete({ id })
