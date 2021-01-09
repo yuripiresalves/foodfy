@@ -18,7 +18,7 @@
 
       {% for chef in chefs %}
         <div class="card__chef">
-          <img src="{{ chef.image }}" alt="{{ chef.name }}">
+          <img src="{{ chef.avatar.replace('public', '') }}" alt="{{ chef.name }}">
 
           <div class="card__information">
             <h2 class="card__information--title">
