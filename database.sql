@@ -98,3 +98,18 @@ PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
 -- FOREIGN KEY ("recipe_id")
 -- REFERENCES "recipes" ("id")
 -- ON DELETE CASCADE;
+
+
+-- to run seeds
+DELETE FROM recipes;
+DELETE FROM recipe_files;
+DELETE FROM users;
+DELETE FROM chefs;
+DELETE FROM files;
+
+-- restart sequence auto_increment from tables ids
+ALTER SEQUENCE recipes_id_seq RESTART WITH 1;
+ALTER SEQUENCE recipe_files_id_seq RESTART WITH 1;
+ALTER SEQUENCE users_id_seq RESTART WITH 1;
+ALTER SEQUENCE chefs_id_seq RESTART WITH 1;
+ALTER SEQUENCE files_id_seq RESTART WITH 1;
