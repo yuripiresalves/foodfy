@@ -5,7 +5,6 @@ const File = require('../models/File')
 const RecipeFile = require('../models/RecipeFile')
 
 const LoadRecipeService = require('../services/LoadRecipeService')
-const { Console } = require('console')
 
 async function getImages(recipeId) {
   let files = await Recipe.files(recipeId)
@@ -106,12 +105,6 @@ module.exports = {
 
       const files = await getImages(recipe.id)
 
-      if (recipe.user_id !== req.session.userId && !req.session.isAdmin) return res.render(`admin/recipes/show`, {
-        recipe,
-        files,
-        error: "Você não pode editar esta receita!"
-      })
-
       return res.render('admin/recipes/edit', { recipe, chefOptions, files })
 
     } catch (err) {
@@ -132,7 +125,7 @@ module.exports = {
 
       if (req.files.length != 0) {
         const newFilesPromise = req.files.map(async file =>
-          await RecipeFile.createRecipeFile({ ...file, id }))
+          await RecipeFile.createRecipeFile({ ...file, recipe_id: id }))
 
         await Promise.all(newFilesPromise)
       }
@@ -143,10 +136,10 @@ module.exports = {
         removed_files.splice(lastIndex, 1)
 
         const removedFilesPromise = removed_files.map(async id => {
-          RecipeFile.delete({ id })
+          RecipeFile.delete( id )
 
           const file = await File.findOne({ where: { id } })
-          File.delete({ id })
+          File.delete( id )
           if (file.path != 'public/images/recipe_placeholder.png') {
             try {
               unlinkSync(file.path)
@@ -190,31 +183,34 @@ module.exports = {
   async delete(req, res) {
 
     try {
-      const files = await Recipe.files(req.body.id);
-      const deletedFilesPromise = files.map(file => {
-        File.delete(file.file_id);
-        if (file.path != 'public/images/recipe_placeholder.png') {
-          unlinkSync(file.path);
-        }
-      });
+      const files = await Recipe.files(req.body.id)
 
-      await Promise.all(deletedFilesPromise);
+      await Recipe.delete(req.body.id)
+
+      files.map(file => {
+        if (file.path != 'public/images/recipe_placeholder.png') {
+          try {
+            unlinkSync(file.path)
+          } catch (err) {
+            console.error(err)
+          }
+        }
+      })
 
       const recipes = await LoadRecipeService.load('recipes')
-      const recipe = await LoadRecipeService.load('recipe', req.body.id)
-
-      await Recipe.delete(req.body.id);
-
+      
       return res.render('admin/recipes/index', {
         recipes,
         success: "Receita deletada com sucesso!"
       })
-
+      
     } catch (err) {
       console.error(err)
-      return res.render('admin/recipes/edit', {
-        recipe,
-        error: "Algum erro aconteceu!"
+      const recipes = await LoadRecipeService.load('recipes')
+
+      return res.render('admin/recipes/index', {
+        recipes,
+        error: "Desculpe, algum erro aconteceu. Por favor, tente novamente!"
       })
     }
   }
