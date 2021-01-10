@@ -50,8 +50,12 @@ const LoadService = {
       let chefRecipes = await Chef.chefRecipes(this.filter)
 
       const recipesPromise = chefRecipes.map(async recipe => {
-        const files = await getImages(recipe.id);
-        recipe.image = files[0].src;
+        const files = await getImages(recipe.id)
+        if (files[0]) {
+          recipe.image = files[0].src
+        } else {
+          recipe.image = 'http://placehold.it/940x280?text=Receita sem foto'
+        }
         return recipe
       })
 
