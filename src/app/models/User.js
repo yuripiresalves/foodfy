@@ -1,4 +1,9 @@
 const db = require('../../config/db')
+
+const Base = require('./Base')
+
+Base.init({table: 'users'})
+
 const crypto = require('crypto')
 const mailer = require('../../lib/mailer')
 const { hash } = require('bcryptjs')
@@ -7,6 +12,7 @@ const fs = require('fs')
 const Recipe = require('../models/Recipe')
 
 module.exports = {
+  ...Base,
   async all() {
     try {
       return db.query(`
@@ -47,24 +53,11 @@ module.exports = {
         ) VALUES ($1, $2, $3, $4)
         RETURNING id
       `
-
-    const password = crypto.randomBytes(20).toString("hex")
-
-    await mailer.sendMail({
-      to: data.email,
-      from: 'no-reply@foodfy.com.br',
-      subject: 'Senha de login',
-      html: `<h2>Aqui está sua senha</h2>
-      <p>Para acessar sua conta no Foodfy, utilize a senha: ${password}</p>
-      `
-    })
-
-    const passwordHash = await hash(password, 8)
-
+      
     const values = [
       data.name,
       data.email,
-      passwordHash,
+      data.password,
       data.is_admin || false
     ]
 
