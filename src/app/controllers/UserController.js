@@ -22,7 +22,29 @@ module.exports = {
   },
   async post(req, res) {
     try {
-      await User.create(req.body)
+      let { name, email, is_admin } = req.body
+
+      is_admin = is_admin || false
+
+      const password = crypto.randomBytes(3).toString("hex")
+
+      await mailer.sendMail({
+        to: data.email,
+        from: 'no-reply@foodfy.com.br',
+        subject: 'Senha de login',
+        html: `<h2>Aqui está sua senha</h2>
+          <p>Para acessar sua conta no Foodfy, utilize a senha: ${password}</p>
+        `
+      })
+
+      const passwordHash = await hash(password, 8)
+
+      await User.create({
+        name,
+        email,
+        password: passwordHash,
+        is_admin
+      })
 
       return res.render('admin/user/edit', {
         user: req.body,
