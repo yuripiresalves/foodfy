@@ -142,7 +142,7 @@ const Validate = {
     const errorDiv = input.parentNode.querySelector('.error')
     if (errorDiv)
       errorDiv.remove()
-      input.style.borderColor = '#DDD'
+    input.style.borderColor = '#DDD'
   },
   isEmail(value) {
     let error = null
@@ -156,6 +156,22 @@ const Validate = {
     return {
       error,
       value
+    }
+  },
+  allFields(e) {
+    const items = document.querySelectorAll(' .item input, .item select ')
+
+    for (item of items) {
+      if (item.value == "" && item.name != "removed_files" && item.name != "photos") {
+        const message = document.createElement('div')
+        message.classList.add('messages')
+        message.classList.add('error')
+        message.style.position = 'fixed'
+        message.innerHTML = "Todos os campos são obrigatórios!"
+        document.querySelector('body').append(message)
+
+        e.preventDefault()
+      }
     }
   }
 }
