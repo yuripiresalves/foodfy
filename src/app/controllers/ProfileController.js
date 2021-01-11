@@ -2,7 +2,6 @@ const User = require("../models/User")
 
 module.exports = {
   async index(req, res) {
-
     try {
       const { userId: id } = req.session
       
@@ -12,7 +11,6 @@ module.exports = {
       
     } catch (err) {
       console.error(err)
-      // return res.redirect('/admin/login')
     }
   },
   async put(req, res) {

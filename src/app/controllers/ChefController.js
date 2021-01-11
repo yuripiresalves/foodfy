@@ -10,7 +10,7 @@ module.exports = {
     try {
       const chefs = await LoadChefService.load('chefs')
 
-      if (!chefs) return res.render('not-found')
+      if (!chefs) return res.render('admin/parts/not-found')
 
       return res.render('admin/chefs/index', { chefs })
 
@@ -50,7 +50,7 @@ module.exports = {
     try {
       const chef = await LoadChefService.load('chef', req.params.id)
 
-      if (!chef) return res.render('admin/not-found')
+      if (!chef) return res.render('admin/parts/not-found')
 
       const recipes = await LoadChefService.load('chefRecipes', chef.id)
 
@@ -64,7 +64,7 @@ module.exports = {
     try {
       const chef = await LoadChefService.load('chef', req.params.id)
 
-      if (!chef) return res.render('admin/not-found')
+      if (!chef) return res.render('admin/parts/not-found')
 
       return res.render('admin/chefs/edit', { chef, avatar: chef.avatar })
 
@@ -77,25 +77,31 @@ module.exports = {
       let chef = await LoadChefService.load('chef', req.body.id)
 
       if (req.files.length != 0) {
-        const { filename, path } = req.files[0];
+        const { filename, path } = req.files[0]
         file_id = await File.create({ name: filename, path })
       } else {
         file_id = chef.file_id
-      }
-
-      if (req.body.removed_files) {
-        const removedFileId = removed_files.replace(',', '');
-        const file = await File.findOne({ where: { id: removedFileId } });
-        await File.delete({ id: removedFileId });
-        if (file.path != 'public/images/chef_placeholder.png') {
-          unlinkSync(file.path);
-        }
       }
 
       await Chef.update(req.body.id, {
         name: req.body.name,
         file_id
       })
+
+      if (req.body.removed_files) {
+        const removedFileId = req.body.removed_files.replace(',', '')
+        const file = await File.findOne({ where: { id: removedFileId } })
+        await File.delete(removedFileId)
+        if (!file.path.includes('_placeholder')) {
+          try {
+            unlinkSync(file.path)
+          } catch (err) {
+            console.error(err)
+          }
+        }
+      }
+
+      chef = await LoadChefService.load('chef', req.body.id)
 
       return res.render('admin/chefs/edit', {
         chef: req.body,
@@ -105,10 +111,12 @@ module.exports = {
 
     } catch (err) {
       console.error(err)
+      const chef = await LoadChefService.load('chef', req.body.id)
+
       return res.render('admin/chefs/edit', {
         chef: req.body,
         avatar: chef.avatar,
-        error: "Algum erro aconteceu!"
+        error: "O chef precisa ter uma imagem!"
       })
     }
   },
@@ -121,7 +129,8 @@ module.exports = {
 
         await Chef.delete(req.body.id)
 
-        if (file.path != 'public/images/chef_placeholder.png') {
+        if (!file.path.includes('_placeholder')) {
+          File.delete(file.id)
           try {
             unlinkSync(file.path)
           } catch (err) {
@@ -148,6 +157,12 @@ module.exports = {
     }
     catch (err) {
       console.error(err)
+      const chefs = await LoadChefService.load('chefs')
+
+        return res.render('admin/chefs/index', {
+          chefs,
+          error: "Desculpe, algum erro aconteceu. Por favor, tente novamente!"
+        })
     }
   }
 }

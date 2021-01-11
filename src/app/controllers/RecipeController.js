@@ -19,11 +19,28 @@ async function getImages(recipeId) {
 module.exports = {
   async index(req, res) {
     try {
-      const recipes = await LoadRecipeService.load('recipes')
+      let { page, limit } = req.query
 
-      if (!recipes) return res.render('admin/not-found')
+      page = page || 1
+      limit = limit || 8
+      let offset = limit * (page - 1)
 
-      return res.render('admin/recipes/index', { recipes })
+      const params = {
+        page,
+        limit,
+        offset
+      }
+
+      const recipes = await LoadRecipeService.load('recipes', params)
+
+      if (!recipes) return res.render('admin/parts/not-found')
+
+      pagination = {
+        total: Math.ceil(recipes[0].total / limit),
+        page
+      }
+
+      return res.render('admin/recipes/index', { recipes, pagination })
 
     } catch (err) {
       console.error(err)
@@ -87,7 +104,7 @@ module.exports = {
     try {
       const recipe = await LoadRecipeService.load('recipe', req.params.id)
 
-      if (!recipe) return res.render('admin/not-found')
+      if (!recipe) return res.render('admin/parts/not-found')
 
       return res.render('admin/recipes/show', { recipe })
 
@@ -99,7 +116,7 @@ module.exports = {
     try {
       const recipe = await LoadRecipeService.load('recipe', req.params.id)
 
-      if (!recipe) return res.render('admin/not-found')
+      if (!recipe) return res.render('admin/parts/not-found')
 
       const chefOptions = await Recipe.chefsSelectOptions()
 
@@ -136,11 +153,11 @@ module.exports = {
         removed_files.splice(lastIndex, 1)
 
         const removedFilesPromise = removed_files.map(async id => {
-          RecipeFile.delete( id )
+          RecipeFile.delete(id)
 
           const file = await File.findOne({ where: { id } })
-          File.delete( id )
-          if (file.path != 'public/images/recipe_placeholder.png') {
+          File.delete(id)
+          if (!file.path.includes('_placeholder')) {
             try {
               unlinkSync(file.path)
             } catch (err) {
@@ -187,7 +204,7 @@ module.exports = {
       await Recipe.delete(req.body.id)
 
       files.map(file => {
-        if (file.path != 'public/images/recipe_placeholder.png') {
+        if (!file.path.includes('_placeholder')) {
           File.delete(file.id)
           try {
             unlinkSync(file.path)
@@ -198,12 +215,12 @@ module.exports = {
       })
 
       const recipes = await LoadRecipeService.load('recipes')
-      
+
       return res.render('admin/recipes/index', {
         recipes,
         success: "Receita deletada com sucesso!"
       })
-      
+
     } catch (err) {
       console.error(err)
       const recipes = await LoadRecipeService.load('recipes')

@@ -1,10 +1,13 @@
 const User = require("../models/User")
 
+const crypto = require('crypto')
+const mailer = require('../../lib/mailer')
+const { hash } = require('bcryptjs')
+
 module.exports = {
   async list(req, res) {
     try {
-      let results = await User.all()
-      const users = results.rows
+      const users = await User.findAll()
 
       return res.render('admin/user/index', { users })
 
@@ -29,11 +32,13 @@ module.exports = {
       const password = crypto.randomBytes(3).toString("hex")
 
       await mailer.sendMail({
-        to: data.email,
+        to: email,
         from: 'no-reply@foodfy.com.br',
         subject: 'Senha de login',
-        html: `<h2>Aqui está sua senha</h2>
-          <p>Para acessar sua conta no Foodfy, utilize a senha: ${password}</p>
+        html: `<h2>Bem-vindo ao Foodfy, ${name}</h2>
+          <p>Para acessar a sua conta, utilize as seguintes credenciais:</p>
+          <p><strong>E-mail</strong>: ${email}</p>
+          <p><strong>Senha</strong>: ${password}</p>
         `
       })
 
@@ -60,7 +65,7 @@ module.exports = {
       const { user } = req
       let { name, email, is_admin } = req.body
 
-      if (is_admin !== true) {
+      if (is_admin != true) {
         is_admin = false
       }
 
@@ -78,6 +83,7 @@ module.exports = {
     } catch (err) {
       console.error(err)
       return res.render('admin/user/edit', {
+        user: req.body,
         error: "Algum erro aconteceu!"
       })
     }
@@ -86,8 +92,7 @@ module.exports = {
     try {
       await User.delete(req.body.id)
 
-      let results = await User.all()
-      const users = results.rows
+      const users = await User.findAll()
 
       return res.render('admin/user/index', {
         users,
@@ -95,8 +100,10 @@ module.exports = {
       })
     } catch (err) {
       console.error(err)
-      return res.render('admin/user/edit', {
-        user: req.body,
+      const users = await User.findAll()
+
+      return res.render('admin/user/index', {
+        users,
         error: "Erro ao tentar deletar a conta!"
       })
     }
