@@ -67,10 +67,13 @@ async function createChefs() {
 
   const files = await createFiles({
     name: 'chef',
-    path: 'public/images/chef_placeholder.png'
+    path: `public/images/chef${Math.ceil(Math.random() * 3)}_placeholder.png`
   }, totalChefs)
 
-  const filesPromise = files.map(file => File.create(file))
+  const filesPromise = files.map(file => File.create({ 
+    ...file,  
+    path: `public/images/chef${Math.ceil(Math.random() * 3)}_placeholder.png`
+  }))
   filesId = await Promise.all(filesPromise)
 
   for (let fileIndex = 0; chefs.length < totalChefs; fileIndex++) {
@@ -227,7 +230,7 @@ async function createRecipes({ user_id, chef_id }) {
 
   const files = await createFiles({
     name: 'recipe',
-    path: 'public/images/recipe_placeholder.png'
+    path: `public/images/recipe_placeholder.png`
   }, totalRecipes)
 
   let filesPromise = files.map(file => File.create(file))
@@ -235,10 +238,10 @@ async function createRecipes({ user_id, chef_id }) {
 
   const recipeFiles = []
 
-  while (recipeFiles.length < totalRecipes) {
+  while (recipeFiles.length < (totalRecipes * 2)) {
     recipeFiles.push({
       name: 'recipe',
-      path: 'public/images/recipe_placeholder.png',
+      path: `public/images/recipe${Math.ceil(Math.random() * 3)}_placeholder.png`,
       recipe_id: recipesId[Math.floor(Math.random() * totalRecipes)],
       file_id: filesId[Math.floor(Math.random() * filesId.length)]
     })
