@@ -1,0 +1,76 @@
+{% extends 'site/layout.njk' %}
+
+{% block head %}
+<link rel="stylesheet" href="/styles/admin/show.css">
+
+  <title>{{ chef.name }}
+    | Foodfy</title>
+{% endblock head %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="header">
+      <h2 class="container__name">
+        Chef:
+        {{ chef.name }}
+      </h2>
+    </div>
+
+    <main class="container__chef">
+      <img class="container__chef--image" src="{{ chef.avatar }}" alt="{{ chef.name }}">
+
+      <h1 class="container__chef--name">
+        {{ chef.name }}
+      </h1>
+      <p class="container__chef--recipes">
+        {% if chef.total_recipes > 1 or chef.total_recipes == 0 %}
+          {{ chef.total_recipes }}
+          receitas
+        {% endif %}
+
+        {% if chef.total_recipes == 1 %}
+          {{ chef.total_recipes }}
+          receita
+        {% endif %}
+      </p>
+
+      <h1 class="container__cards--title">
+        Receitas
+      </h1>
+
+      {% if chef.total_recipes != 0 %}
+        <section class="container__cards">
+
+          {% for recipe in recipes %}
+            <div class="card" id="{{ recipe.id }}">
+              <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+
+              <div class="card__information">
+                <h2 class="card__information--title">
+                  {{ recipe.title }}
+                </h2>
+
+                <p class="card__information--author">
+                  {{ chef.name }}
+                </p>
+
+                <a href="/recipes/{{ recipe.id }}" class="card__information--view">Visualizar</a>
+              </div>
+            </div>
+          {% endfor %}
+
+        </section>
+      {% endif %}
+
+      {% if chef.total_recipes == 0 %}
+        <p class="container__chef--recipes" style="margin-top: 90px;">
+          {{ chef.name }} não possui receitas
+        </p>
+      {% endif %}
+
+    </main>
+
+  </div>
+
+{% endblock content %}
