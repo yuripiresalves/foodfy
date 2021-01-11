@@ -36,7 +36,7 @@ const LoadService = {
   },
   async recipes() {
     try {
-      let recipes = await Recipe.findAll()
+      let recipes = await Recipe.paginate(this.filter)
 
       const recipesPromise = recipes.map(async recipe => {
         const files = await getImages(recipe.id)
@@ -44,7 +44,7 @@ const LoadService = {
         if (files.length != 0) {
           recipe.image = files[0].src
         } else {
-          recipe.image = 'http://placehold.it/940x280?text=Receita sem foto'
+          recipe.image = 'http://placehold.it/940x280?text=Receita sem imagem'
         }
 
         return recipe
