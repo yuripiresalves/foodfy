@@ -4,7 +4,7 @@ const multer = require('../../app/middlewares/multer')
 
 const RecipeController = require('../../app/controllers/RecipeController')
 
-const { onlyUsers, onlyAdmin } = require('../../app/middlewares/session')
+const { onlyUsers } = require('../../app/middlewares/session')
 
 const Validator = require('../../app/validators/recipe')
 
