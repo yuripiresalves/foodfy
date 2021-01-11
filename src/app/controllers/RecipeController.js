@@ -181,7 +181,6 @@ module.exports = {
     }
   },
   async delete(req, res) {
-
     try {
       const files = await Recipe.files(req.body.id)
 
@@ -189,6 +188,7 @@ module.exports = {
 
       files.map(file => {
         if (file.path != 'public/images/recipe_placeholder.png') {
+          File.delete(file.id)
           try {
             unlinkSync(file.path)
           } catch (err) {
