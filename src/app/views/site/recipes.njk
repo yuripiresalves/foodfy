@@ -5,6 +5,15 @@
   <title>Receitas | Foodfy</title>
 {% endblock head %}
 
+{% block search %}
+  <div class="search">
+    <form action="/results" method="get">
+      <input type="text" name="filter" placeholder="Buscar uma receita" required="required">
+      <button type="submit">Buscar</button>
+    </form>
+  </div>
+{% endblock search %}
+
 {% block content %}
   <main>
     <div class="cards">
