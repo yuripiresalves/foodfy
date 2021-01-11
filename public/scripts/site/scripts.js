@@ -1,10 +1,20 @@
 // OPEN RECIPE
-const cards = document.querySelectorAll('.card')
+let cards = document.querySelectorAll('.card')
 
 for (const card of cards) {
   card.addEventListener('click', () => {
     let id = card.getAttribute('id')
     window.location.href = `/recipes/${id}`
+  })
+}
+
+// OPEN CHEF
+cards = document.querySelectorAll('.card__chef')
+
+for (const card of cards) {
+  card.addEventListener('click', () => {
+    let id = card.getAttribute('id')
+    window.location.href = `/chefs/${id}`
   })
 }
 
