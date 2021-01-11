@@ -104,6 +104,48 @@
   background: #7665f5;
 }
 
+/* -------------- PAGINATION -------------------- */
+
+.pagination {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.pagination a {
+  background-color: #6558C3;
+  padding: 10px 15px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: .2s;    
+}
+
+.pagination a+a {
+  margin-left: 8px;
+}
+
+.pagination a:hover {
+  background-color: #7665f5;
+}
+
+.pagination a.active {
+  background-color: #7665f5;
+}
+
+.pagination span {
+  background-color: #6558C3;
+  padding: 10px 15px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: default;
+  margin: 0 8px;
+}
+
 /* ------ CHEF ------ */
 .container__name {
   font-size: 24px;
