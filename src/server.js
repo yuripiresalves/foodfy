@@ -27,5 +27,5 @@ nunjucks.configure('src/app/views', {
 })
 
 server.listen(5000, () => {
-  console.log("pai ta on")
+  console.log("server is running")
 })
