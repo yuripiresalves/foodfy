@@ -1,0 +1,49 @@
+{% extends 'admin/layout.njk' %}
+
+{% block head %}
+  <link rel="stylesheet" href="/styles/admin/index.css">
+  <title>Admin | Foodfy</title>
+{% endblock head %}
+
+{% block content %}
+
+  <div class="container">
+    <header class="header container__title">
+      <h3>Gerenciar receitas</h3>
+      <a class="button" href="/admin/recipes/create">Nova receita</a>
+    </header>
+
+    <section class="container__cards">
+
+      {% for recipe in recipes %}
+        {% if recipe.user_id === session.userId %}
+          <div class="card" id="{{ recipe.id }}">
+            <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+
+            <div class="card__information">
+              <h2 class="card__information--title">
+                {{ recipe.title }}
+              </h2>
+
+              <p class="card__information--author">
+                por {{ recipe.chef_name }}
+              </p>
+
+              <a href="/admin/recipes/{{ recipe.id }}" class="card__information--view">Visualizar</a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+    </section>
+
+    <div 
+      class="pagination"
+      data-page={{pagination.page}}
+      data-total={{pagination.total}}
+      data-filter={{filter}}
+    ></div>
+
+  </div>
+
+{% endblock content %}

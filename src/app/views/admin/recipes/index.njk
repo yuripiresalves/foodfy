@@ -16,39 +16,29 @@
     <section class="container__cards">
 
       {% for recipe in recipes %}
-        {% if recipe.user_id === session.userId or session.isAdmin %}
-          <div class="card" id="{{ recipe.id }}">
-            <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+        <div class="card" id="{{ recipe.id }}">
+          <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
 
-            <div class="card__information">
-              <h2 class="card__information--title">
-                {{ recipe.title }}
-              </h2>
+          <div class="card__information">
+            <h2 class="card__information--title">
+              {{ recipe.title }}
+            </h2>
 
-              <p class="card__information--author">
-                por {{ recipe.chef_name }}
-              </p>
+            <p class="card__information--author">
+              por
+              {{ recipe.chef_name }}
+            </p>
 
-              <a href="/admin/recipes/{{ recipe.id }}" class="card__information--view">Visualizar</a>
-            </div>
+            <a href="/admin/recipes/{{ recipe.id }}" class="card__information--view">Visualizar</a>
           </div>
-        {# {% else %}
-          <p style="font-size: 20px; color: #777; margin-top: 60px;">
-            Você não possui receitas cadastradas
-          </p> #}
-        {% endif %}
+        </div>
       {% endfor %}
-
     </section>
 
-    {% if session.isAdmin %}
-      <div 
-        class="pagination"
-        data-page={{pagination.page}}
-        data-total={{pagination.total}}
-        data-filter={{filter}}
-      ></div>
-    {% endif %}
+    <div class="pagination"
+    data-page={{pagination.page}}
+    data-total={{pagination.total}} 
+    data-filter={{filter}}></div>
 
   </div>
 

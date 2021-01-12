@@ -46,6 +46,35 @@ module.exports = {
       console.error(err)
     }
   },
+  async userRecipes(req, res) {
+    try {
+      let { page, limit } = req.query
+
+      page = page || 1
+      limit = limit || 8
+      let offset = limit * (page - 1)
+
+      const params = {
+        page,
+        limit,
+        offset
+      }
+
+      const recipes = await LoadRecipeService.load('recipes', params)
+
+      if (!recipes) return res.render('admin/parts/not-found')
+
+      pagination = {
+        total: Math.ceil(recipes[0].total / limit),
+        page
+      }
+
+      return res.render('admin/recipes/my-recipes', { recipes, pagination })
+
+    } catch (err) {
+      console.error(err)
+    }
+  },
   async create(req, res) {
     try {
       const chefOptions = await Recipe.chefsSelectOptions()
