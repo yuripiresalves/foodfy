@@ -3,10 +3,30 @@
   <header class="header-layout">
     <nav class="menu-links">
       <a class="logo" href="/admin/recipes"><img src="/assets/logo-white.png" alt="Foodfy"></a>
-      <a class="recipes" href="/admin/recipes">RECEITAS</a>
+      <div class="recipes-links">
+        <a class="recipes" href="/admin/recipes">RECEITAS</a>
+        <ul class="submenu">
+          <li>
+            <a href="/admin/recipes">TODAS RECEITAS</a>
+          </li>
+          <li>
+            <a href="/admin/recipes/my-recipes">MINHAS RECEITAS</a>
+          </li>
+        </ul>
+      </div>
       <a class="chefs" href="/admin/chefs">CHEFS</a>
       {% if session.isAdmin %}
-        <a class="users" href="/admin/users">USUÁRIOS</a>
+        <div class="users">
+          <a class="users" href="/admin/users">USUÁRIOS</a>
+          <ul class="submenu">
+            <li>
+              <a href="/admin/users">TODOS USUÁRIOS</a>
+            </li>
+            <li>
+              <a href="/admin/profile">MINHA CONTA</a>
+            </li>
+          </ul>
+        </div>
       {% else %}
         <a class="users" href="/admin/profile">USUÁRIO</a>
       {% endif %}
@@ -23,5 +43,5 @@
   <header class="header-logo">
     <img src="/assets/logo.png" alt="">
   </header>
-  
+
 {% endif %}

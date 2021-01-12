@@ -35,27 +35,103 @@
 
   display: flex;
   align-items: center;
+
 }
 
-.menu-links a:first-child {
-  margin-right: 20px;
+.menu-links a.logo {
+  margin-right: 50px;
 }
 
-.menu-links a+a {
-  margin-left: 30px;
+.menu-links a:not(:first-child),
+a.recipes,
+a.users {
+  margin-right: 30px;
   font-size: 15px;
   font-weight: bold;
   color: #999999;
   text-decoration: none;
 }
 
-.menu-links a+a:hover {
+.menu-links a:hover,
+.recipes-links a:hover,
+.users a:hover,
+.submenu a:hover {
   color: #fff;
   transition: color .2s;
 }
 
 .menu-links a.active {
   color: #fff;
+}
+
+div.recipes-links {
+  position:relative;
+}
+
+div.users {
+  position:relative;
+}
+.submenu {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+
+  margin-top: 8px;
+
+  width: 100px;
+
+  text-align: center;
+
+  display: block;
+  background: #111111;
+
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px -2px rgba(190, 190, 190, 0.3);
+
+  transition: all .2s;
+  opacity: 0;
+
+  visibility: hidden;
+}
+
+.submenu li {
+  list-style: none;
+}
+
+.submenu li a {
+  color: #999999;
+  padding: 8px 12px;
+  cursor: pointer;
+
+  background: none;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  text-decoration: none;
+
+  border-radius: 4px;
+  border-top: 1px solid #999999;
+
+  display: inline-block;
+  width: 100%;
+}
+
+.submenu li:first-child a {
+  border: none;
+}
+
+/* .submenu li a:hover,
+.submenu li button:hover {
+  color: #111;
+  font-weight: bold;
+} */
+
+.recipes-links:hover .submenu,
+.users:hover .submenu {
+  top: 0;
+  opacity: 1;
+  visibility: initial;
 }
 
 .logout {
