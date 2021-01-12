@@ -189,11 +189,11 @@ module.exports = {
 
     } catch (err) {
       console.error(err)
-      return res.render('admin/recipes/edit', {
-        recipe: req.body,
-        chefOptions,
-        files,
-        error: "Algum erro aconteceu!"
+      const recipes = await LoadRecipeService.load('recipes', '')
+
+      return res.render('admin/recipes/index', {
+        recipes,
+        error: "Desculpe, algum erro aconteceu. Por favor, tente novamente!"
       })
     }
   },
@@ -214,7 +214,7 @@ module.exports = {
         }
       })
 
-      const recipes = await LoadRecipeService.load('recipes')
+      const recipes = await LoadRecipeService.load('recipes', '')
 
       return res.render('admin/recipes/index', {
         recipes,
@@ -223,7 +223,7 @@ module.exports = {
 
     } catch (err) {
       console.error(err)
-      const recipes = await LoadRecipeService.load('recipes')
+      const recipes = await LoadRecipeService.load('recipes', '')
 
       return res.render('admin/recipes/index', {
         recipes,
