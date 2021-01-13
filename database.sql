@@ -84,22 +84,6 @@ ALTER TABLE "session"
 ADD CONSTRAINT "session_pkey" 
 PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
 
--- cascade effect when delete user and recipes
--- ALTER TABLE "recipes"
--- DROP CONSTRAINT recipes_user_id_fkey,
--- ADD CONSTRAINT recipes_user_id_fkey
--- FOREIGN KEY ("user_id")
--- REFERENCES "users" ("id")
--- ON DELETE CASCADE;
-
--- ALTER TABLE "files"
--- DROP CONSTRAINT files_recipe_id_fkey,
--- ADD CONSTRAINT files_recipe_id_fkey
--- FOREIGN KEY ("recipe_id")
--- REFERENCES "recipes" ("id")
--- ON DELETE CASCADE;
-
-
 -- to run seeds
 DELETE FROM recipes;
 DELETE FROM recipe_files;
