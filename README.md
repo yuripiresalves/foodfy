@@ -24,7 +24,7 @@
   <!-- <img src="https://i.ibb.co/KFp5xvY/mobile.gif" alt="mobile-demo" height="370"> -->
 </div>
 
-
+<hr />
 
 ## 🚀 Tecnologias
 [//]: # (Add the features of your project here:)
