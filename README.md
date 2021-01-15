@@ -39,7 +39,7 @@
 
 ## 👷‍♂️ Instalação
 
-<p>Para executar essa aplicação você precisará ter instalado em sua máquina o [Git][git], [Node][node] e [PostgreSQL][postgresql].</p>
+Para executar essa aplicação você precisará ter instalado em sua máquina o [Git][git], [Node][node] e [PostgreSQL][postgresql].
 
 <p>Após isso, siga os passos abaixo:</p>
 
