@@ -1,6 +1,6 @@
 <h1 align="center">
 <br>
-  <img src="public/assets/chef.png" alt="FOODFY" width="220">
+  <img src="public/assets/chef.png" alt="FOODFY" width="120">
 <br>
 <br>
 
@@ -18,7 +18,8 @@
   </a>
 </p>
 
-[//]: # (Add your gifs/images here:)
+[//]: # 'Add your gifs/images here:'
+
 <div>
 <!--   <img src="https://i.ibb.co/Ns5nWny/web.gif" alt="web-demo" height="370"> -->
   <!-- <img src="https://i.ibb.co/KFp5xvY/mobile.gif" alt="mobile-demo" height="370"> -->
@@ -27,15 +28,16 @@
 <hr />
 
 ## 🚀 Tecnologias
-[//]: # (Add the features of your project here:)
 
--  **HTML**
--  **CSS** 
--  **JavaScript** 
--  **Nunjucks** 
--  **NodeJS** 
--  **Express** 
--  **PostgreSQL**
+[//]: # 'Add the features of your project here:'
+
+- **HTML**
+- **CSS**
+- **JavaScript**
+- **Nunjucks**
+- **NodeJS**
+- **Express**
+- **PostgreSQL**
 
 ## 👷‍♂️ Instalação
 
@@ -74,7 +76,7 @@ cd "C:\Program Files\PostgreSQL\12\bin\"
 .\pg_ctl.exe -D "C:\Program Files\PostgreSQL\12\data" start
 ```
 
-*Note que o -D tem que ser maiúsculo para que o comando seja executado perfeitamente.*
+_Note que o -D tem que ser maiúsculo para que o comando seja executado perfeitamente._
 
 **Desligar o Postgres**
 
@@ -108,7 +110,7 @@ pg_ctl -D /usr/local/var/postgres stop
 
 ## Utilizando o Postbird
 
-Ao abrir o postbird, utilize o arquivo `database.sql` para criar um novo banco de dados e as tabelas. *Lembre-se de mudar as configurações em `src/config/db.js` para seu usuário e senha.*
+Ao abrir o postbird, utilize o arquivo `database.sql` para criar um novo banco de dados e as tabelas. _Lembre-se de mudar as configurações em `src/config/db.js` para seu usuário e senha._
 
 ## Executando a aplicação
 
@@ -123,7 +125,6 @@ $ npm start
 ```
 
 A aplicação estará sendo executada na porta 5000 (http://localhost:5000)
-
 
 ## 📝 License
 
