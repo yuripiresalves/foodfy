@@ -1,6 +1,6 @@
 <h1 align="center">
 <br>
-  <img src="public/assets/chef.png" alt="FOODFY" width="120">
+  <img src="public/assets/chef.png" alt="FOODFY" width="216">
 <br>
 <br>
 
@@ -21,7 +21,7 @@
 [//]: # 'Add your gifs/images here:'
 
 <div>
-<!--   <img src="https://i.ibb.co/Ns5nWny/web.gif" alt="web-demo" height="370"> -->
+  <img src="https://i.ibb.co/CWz63Tz/Foodfy.gif" alt="web-demo" height="640">
   <!-- <img src="https://i.ibb.co/KFp5xvY/mobile.gif" alt="mobile-demo" height="370"> -->
 </div>
 
