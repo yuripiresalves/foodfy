@@ -13,7 +13,7 @@
     <img src="https://img.shields.io/badge/made%20by-Yuri%20Alves-6558C3" alt="Made by Yuri Alves">
   </a>
   
-  <a href="https://opensource.org/licenses/MIT">
+  <a href="/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-6558C3.svg" alt="License MIT">
   </a>
 </p>
@@ -26,6 +26,8 @@
   <a href="#construction_worker-instalação">Instalação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-licença">Licença</a>
 </p>
+
+<br/><br/>
 
 ## :desktop_computer: Demonstração
 
