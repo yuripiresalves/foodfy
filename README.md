@@ -31,16 +31,16 @@
 
 [//]: # 'Add your gifs/images here:'
 
-<span align="center">
+<p>
   <p>Site:</p>
-  <img src="https://i.ibb.co/Zgn956H/Foodfy.gif" alt="Foodfy" height="315">
+  <img  src="https://i.ibb.co/Zgn956H/Foodfy.gif" alt="Foodfy" height="315">
   <br/><br/>
   <p>Parte administrativa com usuário adiministrador:</p>
   <img src="https://i.ibb.co/4t80VsJ/Admin.gif" alt="Admin" height="315">
   <br/><br/>
   <p>Parte administrativa com usuário comum:</p>
   <img src="https://i.ibb.co/qykWFGk/User.gif" alt="User" height="315">
-</span>
+</p>
 
 <hr/>
 
