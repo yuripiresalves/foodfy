@@ -18,16 +18,33 @@
   </a>
 </p>
 
+## :pushpin: Conteúdo
+
+<p align="center">
+  <a href="#desktop_computer-demonstração">Demonstração</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-tecnologias-utilizadas">Tecnologias utilizadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#construction_worker-instalação">Instalação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-licença">Licença</a>
+</p>
+
+## :desktop_computer: Demonstração
+
 [//]: # 'Add your gifs/images here:'
 
-<div>
-  <img src="https://i.ibb.co/CWz63Tz/Foodfy.gif" alt="web-demo" height="640">
-  <!-- <img src="https://i.ibb.co/KFp5xvY/mobile.gif" alt="mobile-demo" height="370"> -->
-</div>
+<span align="center">
+  <p>Site:</p>
+  <img src="https://i.ibb.co/Zgn956H/Foodfy.gif" alt="Foodfy" height="315">
+  <br/><br/>
+  <p>Parte administrativa com usuário adiministrador:</p>
+  <img src="https://i.ibb.co/4t80VsJ/Admin.gif" alt="Admin" height="315">
+  <br/><br/>
+  <p>Parte administrativa com usuário comum:</p>
+  <img src="https://i.ibb.co/qykWFGk/User.gif" alt="User" height="315">
+</span>
 
-<hr />
+<hr/>
 
-## 🚀 Tecnologias
+## :rocket: Tecnologias utilizadas
 
 [//]: # 'Add the features of your project here:'
 
@@ -39,7 +56,7 @@
 - **Express**
 - **PostgreSQL**
 
-## 👷‍♂️ Instalação
+## :construction_worker: Instalação
 
 Para executar essa aplicação você precisará ter instalado em sua máquina o [Git][git], [Node][node] e [PostgreSQL][postgresql].
 
@@ -62,18 +79,20 @@ Instale o [Postbird][postbird] para poder utilizar o PostgreSQL com uma interfac
 
 ### Ligar o Postgres
 
-## Windows:
+### Windows:
 
 1. Abra o Powershell como administrador, e navegue até a pasta da instação
 
+_Note que neste exemplo estou utilizando a versão 13, caso você esteja com uma versão diferente, troque o numéro 13 para o correspondente à sua versão._
+
 ```bash
-cd "C:\Program Files\PostgreSQL\12\bin\"
+cd "C:\Program Files\PostgreSQL\13\bin\"
 ```
 
 2. Inicie o postgres com o comando abaixo:
 
 ```bash
-.\pg_ctl.exe -D "C:\Program Files\PostgreSQL\12\data" start
+.\pg_ctl.exe -D "C:\Program Files\PostgreSQL\13\data" start
 ```
 
 _Note que o -D tem que ser maiúsculo para que o comando seja executado perfeitamente._
@@ -83,28 +102,28 @@ _Note que o -D tem que ser maiúsculo para que o comando seja executado perfeita
 Use o passo número 1 acima e digite o comando para desligar
 
 ```bash
-.\pg_ctl.exe -D "C:\Program Files\PostgreSQL\12\data" stop
+.\pg_ctl.exe -D "C:\Program Files\PostgreSQL\13\data" stop
 ```
 
-## Mac:
+### Mac:
 
 ```shell
 brew install postgres
 ```
 
-### Iniciar o postgres
+**Iniciar o postgres**
 
 ```shell
 pg_ctl -D /usr/local/var/postgres start
 ```
 
-### Desligar o postgres
+**Desligar o postgres**
 
 ```shell
 pg_ctl -D /usr/local/var/postgres stop
 ```
 
-## Linux:
+### Linux:
 
 [Documentação Oficial de Instalação do Postgres](https://www.postgresql.org/download/linux/)
 
@@ -124,15 +143,17 @@ $ node seed.js
 $ npm start
 ```
 
-A aplicação estará sendo executada na porta 5000 (http://localhost:5000)
+* A aplicação estará sendo executada na porta 5000 (http://localhost:5000)
+* A senha padrão para todos os usuários gerados através do arquivo `seed.js` é **123**.
+* Para envio de e-mails com o [mailtrap](https://mailtrap.io) altere o arquivo `src/lib/mailer.js` com seu **user** e **pass**.
 
-## 📝 License
+## :memo: Licença
 
-This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) page for details.
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
 
 ---
 
-Made with 💚
+Feito com :orange_heart: por [Yuri Alves](https://linkedin.com/in/yuripiresalves)
 
 [git]: https://git-scm.com/
 [node]: nodejs.org/en/
